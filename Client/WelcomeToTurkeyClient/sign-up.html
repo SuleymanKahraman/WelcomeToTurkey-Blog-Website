@@ -91,6 +91,7 @@
     </div>
 
     <!-- Vendor JS Files -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
     <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
@@ -100,19 +101,43 @@
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
     <script>
-      // Get form element and password fields
       const form = document.getElementById("signup-form");
-      const passwordField = document.getElementById("password");
-      const confirmPasswordField = document.getElementById("confirm-password");
 
-      // Add form submit event listener
       form.addEventListener("submit", function (event) {
-        // Check if passwords match
-        if (passwordField.value !== confirmPasswordField.value) {
-          // Display error message and prevent form submission
+        event.preventDefault();
+
+        const firstName = document.getElementById("firstName").value;
+        const lastName = document.getElementById("lastName").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const confirmPassword =
+          document.getElementById("confirm-password").value;
+
+        if (password !== confirmPassword) {
           alert("Passwords do not match.");
-          event.preventDefault();
+          return;
         }
+
+        const userData = {
+          firstName,
+          lastName,
+          email,
+          password,
+        };
+        console.log(userData);
+        debugger;
+        axios
+          .post(`https://localhost:7202/api/authentication/sign_up`, userData)
+          .then(function (response) {
+            alert("Kaydetme İşlemi Başarılı!");
+          })
+          .catch(function (error) {
+            // handle error
+            alert("Post İşlemi Hatalı");
+          })
+          .finally(function () {
+            // always executed
+          });
       });
 
       function validateEmail() {

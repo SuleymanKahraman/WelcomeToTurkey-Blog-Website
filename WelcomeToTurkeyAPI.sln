@@ -5,7 +5,7 @@ VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WelcomeToTurkeyAPI", "WelcomeToTurkeyAPI\WelcomeToTurkeyAPI.csproj", "{17507F9F-556E-45DF-A3CD-6DEE76DD3415}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WelcomeToTurkeyAPI.Data", "WelcomeToTurkey.Data\WelcomeToTurkeyAPI.Data.csproj", "{A4FBFE35-DA24-4C38-93C8-7D4D482EEC7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WelcomeToTurkeyAPI.Data", "WelcomeToTurkey.Data\WelcomeToTurkeyAPI.Data.csproj", "{A4FBFE35-DA24-4C38-93C8-7D4D482EEC7F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
