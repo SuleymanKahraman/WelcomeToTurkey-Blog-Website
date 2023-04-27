@@ -1,0 +1,46 @@
+.container {
+    max-width: 700px;
+    margin-top: 100px;
+  }
+
+  .card {
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-header {
+    background-color: #fff;
+    border-bottom: none;
+  }
+
+  .form-control:focus {
+    border-color: #06c !important;
+    box-shadow: none !important;
+  }
+
+  .btn-primary {
+    background-color: #06c;
+    border-color: #06c;
+  }
+
+  .btn-primary:hover {
+    background-color: #048;
+    border-color: #048;
+  }
+
+  .btn-secondary {
+    background-color: #fff;
+    border-color: #c0c0c0;
+    color: #c0c0c0;
+  }
+
+  .btn-secondary:hover {
+    background-color: #c0c0c0;
+    border-color: #c0c0c0;
+    color: #fff;
+  }
+
+  .forgot-password {
+    color: #06c;
+  }

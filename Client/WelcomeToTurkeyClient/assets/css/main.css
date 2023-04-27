@@ -925,9 +925,9 @@ section {
 /*--------------------------------------------------------------
 # Comments
 --------------------------------------------------------------*/
-.comment {
-  /* Font not working in <textarea> for this version of bs */
-}
+/* .comment {
+  /* Font not working in <textarea> for this version of bs 
+} */
 
 .comment .avatar {
   position: relative;
@@ -1298,3 +1298,4 @@ section {
 .footer .credits a {
   color: var(--color-white);
 }
+
