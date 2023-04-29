@@ -124,8 +124,7 @@
           email,
           password,
         };
-        console.log(userData);
-        debugger;
+       
         axios
           .post(`https://localhost:7202/api/authentication/sign_up`, userData)
           .then(function (response) {

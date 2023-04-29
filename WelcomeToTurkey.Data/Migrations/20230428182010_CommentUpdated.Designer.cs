@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WelcomeToTurkeyAPI.Data;
 
@@ -11,9 +12,11 @@ using WelcomeToTurkeyAPI.Data;
 namespace WelcomeToTurkeyAPI.Data.Migrations
 {
     [DbContext(typeof(WTTDbContext))]
-    partial class WTTDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230428182010_CommentUpdated")]
+    partial class CommentUpdated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -74,9 +77,6 @@ namespace WelcomeToTurkeyAPI.Data.Migrations
 
                     b.Property<int>("BlogId")
                         .HasColumnType("int");
-
-                    b.Property<DateTime>("CommentDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Message")
                         .IsRequired()

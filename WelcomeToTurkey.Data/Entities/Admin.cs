@@ -22,4 +22,6 @@ namespace WelcomeToTurkeyAPI.Data.Entities
 
 
     }
+
+
 }

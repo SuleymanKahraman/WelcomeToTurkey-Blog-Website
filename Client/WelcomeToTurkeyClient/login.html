@@ -48,7 +48,7 @@
           <h3 class="text-center mb-0">Login</h3>
         </div>
         <div class="card-body">
-          <form>
+          <form id="login" action="login.html">
             <div class="mb-3">
               <label for="email" class="form-label">Email address</label>
               <input
@@ -76,6 +76,7 @@
       </div>
     </div>
     <!-- Vendor JS Files -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
     <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
@@ -85,6 +86,36 @@
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
     <script>
+      const form = document.getElementById("login");
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const loginData = {
+          email: document.getElementById("email").value,
+          password: document.getElementById("password").value,
+        };
+
+        axios
+          .post(`https://localhost:7202/api/authentication/login`, loginData)
+          .then(function (response) {
+            if(response.data){
+              window.localStorage.setItem("userId",response.data.userId);
+              window.localStorage.setItem("token",response.data.token);
+              window.localStorage.setItem("firstName",response.data.firstName);
+              window.localStorage.setItem("lastName",response.data.lastName);
+              window.location.href="/index.html";
+            }
+          })
+          .catch(function (error) {
+            // handle error
+            alert("Kayıtlı kullanıcı bulunamadı. Lütfen Kayıt Olunuz!");
+          })
+          .finally(function () {
+            // always executed
+          });
+      });
+
       function validateEmail() {
         const emailInput = document.getElementById("email");
         const validationMessage = document.getElementById("validation-message");
