@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WelcomeToTurkeyAPI.Data;
 
@@ -11,9 +12,11 @@ using WelcomeToTurkeyAPI.Data;
 namespace WelcomeToTurkeyAPI.Data.Migrations
 {
     [DbContext(typeof(WTTDbContext))]
-    partial class WTTDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230430075243_UpdateEntities")]
+    partial class UpdateEntities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,7 +33,7 @@ namespace WelcomeToTurkeyAPI.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CategoryId")
+                    b.Property<int>("Category")
                         .HasColumnType("int");
 
                     b.Property<string>("Content")
@@ -46,26 +49,7 @@ namespace WelcomeToTurkeyAPI.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
-
                     b.ToTable("Blogs");
-                });
-
-            modelBuilder.Entity("WelcomeToTurkeyAPI.Data.Entities.Category", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("CategoryName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("WelcomeToTurkeyAPI.Data.Entities.Comment", b =>
@@ -129,17 +113,6 @@ namespace WelcomeToTurkeyAPI.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("WelcomeToTurkeyAPI.Data.Entities.Blog", b =>
-                {
-                    b.HasOne("WelcomeToTurkeyAPI.Data.Entities.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("WelcomeToTurkeyAPI.Data.Entities.Comment", b =>

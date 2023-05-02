@@ -1,0 +1,25 @@
+	INSPECTORPORTAL
+
+Add-Migration [name] -P InspectorPortal.Data -C InspectorPortalDbContext -S InspectorPortal
+
+Update-Database -P InspectorPortal.Data -Context InspectorPortalDbContext -S InspectorPortal
+
+	WELCOMETOTURKEY
+
+Add-Migration [] -P WelcomeToTurkeyAPI.Data -C WTTDbContext -S WelcomeToTurkeyAPI
+
+Update-Database -P WelcomeToTurkeyAPI.Data -Context WTTDbContext -S WelcomeToTurkeyAPI
+
+
+MAC İÇİN MIGRATION
+
+dotnet ef database update -p ./InspectorPortal.Data -c InspectorPortalDbContext -s ./InspectorPortal  
+
+
+
+
+DOCKER CONTAİNER SQL
+
+ sudo docker run --name MsSQL -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=1q2w3e4R!' -p 1433:1433 -d mcr.microsoft.com/mssql/server
+
+sudo docker run -e 'ACCEPT_EULA=1' -e 'MSSQL_SA_PASSWORD=1q2w3e4R!' -p 1433:1433 -d --name MsSQL -d mcr.microsoft.com/azure-sql-edge

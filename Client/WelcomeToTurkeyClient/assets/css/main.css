@@ -1299,6 +1299,8 @@ section {
   color: var(--color-white);
 }
 
+/*Logout CSS*/
+
 .dropdown {
   position: relative;
   display: inline-block;
@@ -1343,3 +1345,4 @@ section {
 .dropdown:hover button {
   background-color: #f1f1f1;
 }
+

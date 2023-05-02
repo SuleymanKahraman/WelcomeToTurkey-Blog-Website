@@ -13,10 +13,11 @@ namespace WelcomeToTurkeyAPI.Data
 
         public WTTDbContext(DbContextOptions opt) : base(opt) { }
 
-        public DbSet<Admin> Admins { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Blog> Blogs { get; set; }
+        public DbSet<Category> Categories { get; set; }
+
 
 
 

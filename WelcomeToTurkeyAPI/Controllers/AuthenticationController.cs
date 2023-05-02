@@ -4,6 +4,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using WelcomeToTurkeyAPI.Data;
 using WelcomeToTurkeyAPI.Data.Entities;
+using WelcomeToTurkeyAPI.Data.Enums;
 using WelcomeToTurkeyAPI.Dtos;
 
 namespace WelcomeToTurkeyAPI.Controllers
@@ -35,7 +36,7 @@ namespace WelcomeToTurkeyAPI.Controllers
 
         [HttpPost("sign_up")]
 
-        public IActionResult SignUp([FromBody] SignUpDto opt)
+        public IActionResult SignUpUser([FromBody] SignUpDto opt)
         {
 
             var signUpEntity = new User()
@@ -43,7 +44,8 @@ namespace WelcomeToTurkeyAPI.Controllers
                 FirstName = opt.FirstName,
                 LastName = opt.LastName,
                 EmailAdress = opt.Email,
-                Password = opt.Password
+                Password = opt.Password,
+                UserType = UserTypes.User,
             };
 
             if (signUpEntity != null)
@@ -69,8 +71,8 @@ namespace WelcomeToTurkeyAPI.Controllers
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Hava ne kadar guzel!")),
                                                             SecurityAlgorithms.HmacSha256Signature),
                 Claims = claims,
-                IssuedAt = DateTime.Now,
-                NotBefore = DateTime.Now
+                //IssuedAt = DateTime.Now,
+                //NotBefore = DateTime.Now
             };
 
             var handler = new JwtSecurityTokenHandler();

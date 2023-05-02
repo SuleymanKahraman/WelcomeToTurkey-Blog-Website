@@ -44,6 +44,28 @@ namespace WelcomeToTurkeyAPI.Controllers
             }).ToList();
             return Ok(comments);
         }
+
+        [HttpGet("list-blog")]
+        [AllowAnonymous]
+        public IActionResult ListAllBlogs()
+        {
+            var blogs = dbContext.Blogs.Join(dbContext.Categories,
+                b => b.CategoryId,
+                c => c.Id,
+                (b, c) => new ListAllBlogsDto
+                {
+                    BlogId = b.Id,
+                    Category=c.CategoryName,
+                    Content=b.Content,
+                    Title = b.Title,    
+                    PublishDate=b.PublishDate,
+
+                }).ToList();
+
+
+
+            return Ok(blogs);
+        }
         [HttpDelete("delete-comment/{commentId}")]
         public IActionResult DeleteCommentById([FromRoute] int commentId)
         {

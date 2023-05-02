@@ -74,18 +74,18 @@
                 <!-- <li><a href="search-result.html">Search Result</a></li> -->
                 <li><a href="#">Culture</a></li>
                 <!-- <li class="dropdown">
-                <a href="#"
-                  ><span>Deep Drop Down</span>
-                  <i class="bi bi-chevron-down dropdown-indicator"></i
-                ></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li> -->
+                  <a href="#"
+                    ><span>Deep Drop Down</span>
+                    <i class="bi bi-chevron-down dropdown-indicator"></i
+                  ></a>
+                  <ul>
+                    <li><a href="#">Deep Drop Down 1</a></li>
+                    <li><a href="#">Deep Drop Down 2</a></li>
+                    <li><a href="#">Deep Drop Down 3</a></li>
+                    <li><a href="#">Deep Drop Down 4</a></li>
+                    <li><a href="#">Deep Drop Down 5</a></li>
+                  </ul>
+                </li> -->
                 <li><a href="#">Entertainment </a></li>
                 <li><a href="#">History</a></li>
                 <li><a href="#">Politics</a></li>
@@ -105,23 +105,24 @@
           <a href="#" class="mx-2"><span class="bi-facebook"></span></a>
           <a href="#" class="mx-2"><span class="bi-twitter"></span></a>
           <a href="#" class="mx-2"><span class="bi-instagram"></span></a>
-
           <a href="#" class="mx-2 js-search-open"
             ><span class="bi-search"></span
           ></a>
           <i class="bi bi-list mobile-nav-toggle"></i>
           <a href="login.html" class="mx-2"
-            ><span class="bi bi-person-circle"></span
-          ></a>
-
-          <div class="dropdown">
-            <button class="dropbtn" id="login" style="display: block">
-              Dropdown
-            </button>
-            <div class="dropdown-content">
-              <button class="btn btn-primary" onclick="logout()">Logout</button>
+            ><span class="bi bi-person-circle"></span>
+          </a>
+          <a href="">
+            <div class="dropdown">
+              <div id="login" style="display: none">
+                <button class="dropbtn"><span id="fName">sdada</span></button>
+                <div class="dropdown-content">
+                  <button onclick="logout()">Logout</button>
+                </div>
+              </div>
             </div>
-          </div>
+          </a>
+
           <!-- <a href="#"><span id="firstName"></span></a> -->
 
           <!-- ======= Search Form ======= -->
@@ -590,19 +591,19 @@
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
-   
+
     <script>
       var firstName = window.localStorage.getItem("firstName");
       var login = document.getElementById("login");
       if (firstName) {
         login.style.display = "block";
-        document.getElementById("login").innerHTML = firstName;
+        document.getElementById("fName").innerHTML = firstName;
       } else {
-        // window.location.href = "/login.html";
+        login.style.display = "none";
       }
 
       function logout() {
-        localStorage.clear();
+        window.localStorage.clear();
         login.style.display = "none";
       }
     </script>

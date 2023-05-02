@@ -8,20 +8,14 @@ using System.Threading.Tasks;
 
 namespace WelcomeToTurkeyAPI.Data.Entities
 {
-    [Table("Admins")]
-    public class Admin
+    [Table("Categories")]
+    public class Category
     {
         [Key]
         [Required]
         public int Id { get; set; }
         [Required]
-        [MaxLength(128)]
-        public string EmailAdress { get; set; }
-        [Required] 
-        public string Password { get; set; }
-
-
+        public string CategoryName { get; set; }
+           
     }
-
-
 }

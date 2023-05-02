@@ -39,6 +39,7 @@
     <!-- Template Main CSS Files -->
     <link href="assets/css/variables.css" rel="stylesheet" />
     <link href="assets/css/main.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets\css\logout.css">
 
     <!-- =======================================================
   * Template Name: ZenBlog
@@ -61,7 +62,7 @@
           <h1>WelcomeTOTurkey</h1>
         </a>
 
-        <nav id="navbar" class="navbar p-2">
+        <nav id="navbar" class="navbar">
           <ul>
             <li><a href="index.html">Home</a></li>
             <!-- <li><a href="single-post.html">Single Post</a></li> -->
@@ -105,23 +106,24 @@
           <a href="#" class="mx-2"><span class="bi-facebook"></span></a>
           <a href="#" class="mx-2"><span class="bi-twitter"></span></a>
           <a href="#" class="mx-2"><span class="bi-instagram"></span></a>
-
           <a href="#" class="mx-2 js-search-open"
             ><span class="bi-search"></span
           ></a>
           <i class="bi bi-list mobile-nav-toggle"></i>
           <a href="login.html" class="mx-2"
-            ><span class="bi bi-person-circle"></span
-          ></a>
-
-          <div class="dropdown">
-            <button class="dropbtn" id="login" style="display: block">
-              Dropdown
-            </button>
-            <div class="dropdown-content">
-              <button onclick="logout()">Logout</button>
+            ><span class="bi bi-person-circle"></span>
+          </a>
+          <a>
+            <div class="dropdown">
+              <div id="login" style="display: none">
+                <button class="dropdown button"><span id="fName">sdada</span></button>
+                <div class="dropdown-content">
+                  <button onclick="logout()">Logout</button>
+                </div>
+              </div>
             </div>
-          </div>
+          </a>
+
           <!-- <a href="#"><span id="firstName"></span></a> -->
 
           <!-- ======= Search Form ======= -->
@@ -157,10 +159,7 @@
                       "
                     >
                       <div class="img-bg-inner">
-                        <h2>
-                          The Best Homemade Masks for Face (keep the Pimples
-                          Away)
-                        </h2>
+                        <h2>süleyman</h2>
                         <p>
                           Lorem ipsum dolor sit amet, consectetur adipisicing
                           elit. Quidem neque est mollitia! Beatae minima
@@ -262,8 +261,22 @@
       <!-- ======= Post Grid Section ======= -->
       <section id="posts" class="posts">
         <div class="container" data-aos="fade-up">
-          <div class="row g-5">
-            <div class="col-lg-4">
+          <div class="row g-5" >
+            <div class="col-9 row" id="post-entry">
+
+            </div>
+            <div class="col-3">
+              başka bişey
+            </div>
+
+          </div>
+
+
+
+
+
+
+            <!-- <div class="col-lg-4">
               <div class="post-entry-1 lg">
                 <a href="single-post.html"
                   ><img
@@ -303,9 +316,9 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
 
-            <div class="col-lg-8">
+            <!-- <div class="col-lg-8">
               <div class="row g-5">
                 <div class="col-lg-4 border-start custom-border">
                   <div class="post-entry-1">
@@ -423,8 +436,8 @@
                   </div>
                 </div>
 
-                <!-- Trending Section -->
-                <div class="col-lg-4">
+                 <-- Trending Section -->
+                <!-- <div class="col-lg-4">
                   <div class="trending">
                     <h3>Trending</h3>
                     <ul class="trending-post">
@@ -479,11 +492,10 @@
                       </li>
                     </ul>
                   </div>
-                </div>
+                </div> -->
                 <!-- End Trending Section -->
               </div>
-            </div>
-          </div>
+            </div> 
           <!-- End .row -->
         </div>
       </section>
@@ -1263,6 +1275,7 @@
                   >
                 </li>
                 <li>
+                  s
                   <a href="contact.html"
                     ><i class="bi bi-chevron-right"></i> Contact</a
                   >
@@ -1428,19 +1441,94 @@
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
     <script>
+      loadBlogs();
       var firstName = window.localStorage.getItem("firstName");
       var login = document.getElementById("login");
       if (firstName) {
         login.style.display = "block";
-        document.getElementById("login").innerHTML = firstName;
+        document.getElementById("fName").innerHTML = firstName;
       } else {
-        // window.location.href = "/login.html";
+        login.style.display = "none";
       }
 
       function logout() {
-        localStorage.clear();
+        window.localStorage.clear();
         login.style.display = "none";
       }
+
+      function loadBlogs() {
+      let postEntries = document.getElementById("post-entry");
+      axios.get(`https://localhost:7202/api/blog/list-blog`).then((response) => {
+       if (response) {
+          var myBlogs = [];
+          myBlogs = response.data;
+          console.log(myBlogs);
+          myBlogs.forEach((myblog) => {
+          postEntries.innerHTML += `
+          <div class="col-12 col-sm-12 col-md-6 col-xl-4 post-entry-1" >
+        <div>
+          <a href="http://127.0.0.1:5500/single-post.html?blogid=${myblog.blogId}" class="blogLink">
+            <img src="assets/img/post-landscape-2.jpg" alt="" class="img-fluid" />
+          </a>
+          <div class="post-meta">
+            <span class="date">${myblog.category}</span>
+            <span class="mx-1">&bullet;</span>
+            <span>${myblog.publishDate}</span>
+          </div>
+          <h2>
+            <a href="single-post.html">${myblog.title}</a>
+          </h2>
+        </div>
+        </div>
+        `
+
+       
+      });
+
+     
+    }
+
+    
+  });
+}
+
+
+      // function loadBlogs(){
+
+      //   let postEntries = document.getElementById("post-entry");
+      //   axios.get(`https://localhost:7202/api/blog/list-blog`).then((response)=>{
+
+      //     if(response){
+      //       var myBlogs = [];
+      //       myBlogs =response.data;
+      //       console.log(myBlogs);
+      //        myBlogs.forEach((myblog) => {
+              
+      //         postEntries.innerHTML+=`<div class="post-entry-1">
+      //             <a href="single-post.html" id="blogLink">
+      //             <span id="blogId" style="display:none;">${myblog.blogId}</span>
+      //             <img src="assets/img/post-landscape-2.jpg" alt="" class="img-fluid" />
+      //             </a>
+      //             <div class="post-meta">
+      //               <span class="date">${myblog.category}</span>
+      //               <span class="mx-1">&bullet;</span>
+      //               <span>${myblog.publishDate}</span>
+      //             </div>
+      //             <h2><a href="single-post.html">${myblog.title}</a></h2>
+      //           </div>
+      //           `
+          
+      //        });
+
+      //     }
+
+      //   })
+
+      // }
+
+
+      
+
     </script>
   </body>
 </html>

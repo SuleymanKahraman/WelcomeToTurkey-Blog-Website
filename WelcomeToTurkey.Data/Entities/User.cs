@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WelcomeToTurkeyAPI.Data.Enums;
 
 namespace WelcomeToTurkeyAPI.Data.Entities
 {
@@ -22,6 +23,11 @@ namespace WelcomeToTurkeyAPI.Data.Entities
         public string EmailAdress { get; set; }
         [Required]
         public string Password { get; set; }
+        [Required]
+        public UserTypes UserType { get; set; }
+
+
+
 
 
     }
