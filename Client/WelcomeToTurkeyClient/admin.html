@@ -4,12 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Panel</title>
-    <!-- Template Main CSS Files -->
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="/assets/css/admin.css" />
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon" />
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -17,61 +14,442 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Inter:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Template Main CSS Files -->
+
+    <link rel="stylesheet" href="/assets/css/admin.css" />
+
+    <!-- Vendor CSS Files -->
+    <link
+      href="assets/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+    <link
+      href="assets/vendor/glightbox/css/glightbox.min.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
   </head>
 
   <body>
-    <!-- Header -->
-    <div class="header">
-
-        <ul class="horizantal">
-
-            <li><div class="logo"><i class="fas fa-cogs"></i> Admin Panel</div></li>
-            <li><div class="menu-toggle" id="menu-toggle">
-                <i class="fas fa-bars"></i>
-              </div></li>
-            <li><a href="#"><i class="fa-solid fa-right-to-bracket"></i>Go To Website</a></li>
-        </ul>
-      <!-- <div class="logo"><i class="fas fa-cogs"></i> Admin Panel</div>
-      <div class="menu-toggle" id="menu-toggle">
-        <i class="fas fa-bars"></i>
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Add Blog</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group p-2">
+                <label for="title">Title</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="title-for-blog"
+                  placeholder="Enter title"
+                />
+              </div>
+              <div class="form-group p-2">
+                <label for="category">Category</label>
+                <select class="form-select" id="category-for-blog">
+                  <option value="">Choosing...</option>
+                  <option value="">Relationship</option>
+                  <option value="">Politics</option>
+                </select>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button type="button" class="btn btn-danger">Add</button>
+          </div>
+        </div>
       </div>
-      <button class="btn btn-primary goto-website">Go to Website</button> -->
+    </div>
+    <!-- The Header -->
+    <div class="header">
+      <ul class="horizantal">
+        <li>
+          <div class="logo"><i class="fas fa-cogs"></i> Admin Panel</div>
+        </li>
+        <li>
+          <div class="menu-toggle" id="menu-toggle" onclick="openNavBar()">
+            <i class="fas fa-bars"></i>
+          </div>
+        </li>
+        <li style="padding-top: 10px; margin-left: 850px">
+          <a href="/login.html">
+            <button type="button" class="btn btn-danger">
+              <i class="bi bi-box-arrow-right"></i> Logout
+            </button>
+          </a>
+        </li>
+      </ul>
     </div>
 
     <!-- The sidebar -->
-    <div class="sidebar" id="sidebar">
-      <a href="#"><i class="fa-solid fa-home"></i> Home</a>
-      <a href="#"><i class="fa solid fa-user"></i> Users</a>
-      <a href="#"><i class="fa-brands fa-blogger"></i> Blogs</a>
-      <a href="#"><i class="fa-solid fa-list"></i> Categories</a>
-      <a href="#"><i class="fa-solid fa-right-to-bracket"></i>Go To Website</a>
+    <div class="sidebar" id="sidebar" style="display: block">
+      <a href="#" onclick="openPanel('home-panel')"
+        ><i class="fa-solid fa-home"></i> Home</a
+      >
+      <a href="#" onclick="openPanel('user-panel')"
+        ><i class="fa solid fa-user"></i> Users</a
+      >
+      <a href="#" onclick="openPanel('blog-panel')"
+        ><i class="fa-brands fa-blogger"></i> Blogs</a
+      >
+      <a href="#" onclick="openPanel('category-panel')"
+        ><i class="fa-solid fa-list"></i> Categories</a
+      >
+      <a href="/index.html">
+        <i class="fa-solid fa-right-to-bracket fa-beat"></i> Website
+      </a>
     </div>
 
-    <div class="main">
-      <h2 class="admin-panel-title">Admin Panel</h2>
-      <p>This side navigation is of full height (100%) and always shown.</p>
-      <p>
-        Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset
-        concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius
-        te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et.
-        Inciderint efficiantur his ad. Eum no molestiae voluptatibus.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset
-        concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius
-        te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et.
-        Inciderint efficiantur his ad. Eum no molestiae voluptatibus.
-      </p>
+    <!-- The Main -->
+    <div class="main" id="main">
+      <div class="panel" id="home-panel">
+        <h2 class="panel-title">Home Panel</h2>
+        <p>Çeşitli Kartlar</p>
+        <p>Kaç post kaç entry</p>
+      </div>
+      <div id="user-panel" class="panel">
+        <h2 class="panel-title">User Panel</h2>
+        <div id="user-panel-table">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Email Adress</th>
+                <th scope="col">Password</th>
+                <th scope="col">UserType</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+                <td>****</td>
+                <td>User</td>
+                <td>
+                  <button type="button" class="btn btn-success btn-sm">
+                    <i class="bi bi-pencil-square"></i></button
+                  ><button type="button" class="btn btn-danger btn-sm">
+                    <i class="bi bi-trash-fill"></i>
+                  </button>
+                </td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="user-panel-update">
+          <form>
+            <div class="form-row">
+              <div class="col">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="First name"
+                />
+              </div>
+              <div class="col">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Last name"
+                />
+              </div>
+              <div class="col">
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Email adress"
+                />
+              </div>
+              <div class="col">
+                <select class="form-control">
+                  <option value="">UserType...</option>
+                  <option value="admin">Admin</option>
+                  <option value="user">User</option>
+                </select>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div id="blog-panel" class="panel">
+        <h2 class="panel-title">Blog Panel</h2>
+
+        <div>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Publish Date</th>
+                <th>Is Publised</th>
+                <th>Details</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>1</th>
+                <td>Love</td>
+                <td>Relationship</td>
+                <td>6/12/2020</td>
+                <td>True/False</td>
+                <td>
+                  <a
+                    href="/blog-detail-for-admin.html"
+                    class="btn btn-info btn-sm"
+                  >
+                    <i class="bi bi-gear"></i>
+                  </a>
+                </td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <ol>
+          <li><p>EKle Buton Bloglar</p></li>
+          <li><p>Grid liste şeklinde bloglar gelsin</p></li>
+          <li>
+            <p>Grid içinde meta bilgileri ve sil/düzenle butonları olacak</p>
+          </li>
+          <li>
+            <p>Filtrelemeler</p>
+          </li>
+          <li>
+            <p>
+              yayından kaldır, yayınla butonları olsun database’e IsPublish
+              butonu koy
+            </p>
+          </li>
+          <li>
+            <p>düzenleme işlemleri için rich text</p>
+          </li>
+        </ol>
+        <a
+          href="#"
+          class="floating-btn"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          <i class="bi bi-plus"></i>
+        </a>
+      </div>
+      <div id="category-panel" class="panel">
+        <h2 class="panel-title">Category Panel</h2>
+
+        <!--List-Of-Categories-->
+        <div>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Categories</th>
+              </tr>
+            </thead>
+            <tbody id="table-categories"></tbody>
+          </table>
+        </div>
+        <!-- Modal-Add-Category-->
+        <div
+          class="modal fade"
+          id="modal-add-category"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Add Category
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <form class="form-group" action="admin.html" method="post">
+                  <div>
+                    <label for="category">Category Name: </label>
+                  </div>
+                  <div>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="add-category"
+                      placeholder="Enter New Category"
+                      style="margin-top: 1%"
+                    />
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  class="btn btn-danger"
+                  onclick="addNewCategory()"
+                >
+                  Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <a
+            href="#"
+            class="floating-btn"
+            data-bs-toggle="modal"
+            data-bs-target="#modal-add-category"
+          >
+            <i class="bi bi-plus"></i>
+          </a>
+        </div>
+      </div>
     </div>
+
+    <!-- Vendor JS Files -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
 
     <!-- JavaScript code to toggle the sidebar -->
     <script>
-      const menuToggle = document.getElementById("menu-toggle");
-      const sidebar = document.getElementById("sidebar");
+      ListOfCategories();
+      function ListOfCategories() {
+        axios
+          .get(`https://localhost:7202/api/Admin/list-category-with-Id`)
+          .then((response) => {
+            var categories = [];
+            categories = response.data; 
+            let i = 0;
+            const table = document.getElementById("table-categories");
+            categories.forEach((element) => {
+              var tr = ``;
+              tr += `<tr>`;
+              tr += `<td>${++i}.</td>`;
+              tr += ` <td>${element.categoryName}</td>`;
+              tr += `<td> <a href="${element.categoryId}">Update</a></td>`;
+              tr += `<td> <a href="${element.categoryId}">Delete</a></td>`;
+              tr+=`</tr>`;
+              table.innerHTML += tr; 
+            });
+          })
+          .catch((error) => {
+            console.log(error);
+            alert("Olmadı!!!");
+          });
+      }
+      function addNewCategory() {
+        const categoryName = document.getElementById("add-category").value;
+        if (categoryName) {
+          axios
+            .post(
+              `https://localhost:7202/api/Admin/add-category/${categoryName}`
+            )
+            .then((response) => {
+              alert("İşlem Başarılı...");
+              window.location.reload();
+            })
+            .catch((error) => {
+              alert("Olmadı!!!");
+            });
+        }
+      }
 
-      menuToggle.addEventListener("click", function () {
-        sidebar.classList.toggle("active");
-      });
+      function addNewBlog() {
+        const newBlog = {
+          title: document.getElementById("title-for-blog").value,
+          category: document.getElementById("category-for-blog").value,
+        };
+
+        axios.post(`https://localhost:7202/api/`);
+      }
+
+      function openNavBar() {
+        const sidebar = document.getElementById("sidebar");
+        const main = document.getElementById("main");
+
+        if (sidebar.style.width === "250px") {
+          // Close Side Bar
+          sidebar.style.width = "0px";
+          main.style.marginLeft = "0px";
+        } else {
+          // Open Side Bar
+          sidebar.style.width = "250px";
+          main.style.marginLeft = "250px";
+        }
+      }
+
+      function openPanel(panelId) {
+        const panels = document.getElementsByClassName("panel");
+        for (let i = 0; i < panels.length; i++) {
+          const panel = panels[i];
+          if (panel.id === panelId) {
+            panel.style.display = "block";
+          } else {
+            panel.style.display = "none";
+          }
+        }
+      }
     </script>
   </body>
 </html>

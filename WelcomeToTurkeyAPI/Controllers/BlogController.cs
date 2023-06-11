@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using WelcomeToTurkeyAPI.Data.Entities;
 using WelcomeToTurkeyAPI.Dtos;
 using WelcomeToTurkeyAPI.Dtos.CommentDtos;
+using WelcomeToTurkeyAPI.Dtos.BlogDtos;
 
 namespace WelcomeToTurkeyAPI.Controllers
 {

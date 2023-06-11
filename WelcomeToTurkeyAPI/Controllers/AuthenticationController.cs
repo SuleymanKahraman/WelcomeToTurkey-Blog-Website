@@ -22,7 +22,7 @@ namespace WelcomeToTurkeyAPI.Controllers
         public IActionResult Login([FromBody] LoginDto opt)
         {
             var loginResult = dbContext.Users.Where(x => x.EmailAdress == opt.Email && x.Password == opt.Password)
-                                             .Select(x=> new LoginResult { FirstName = x.FirstName, LastName = x.LastName, UserId = x.Id}).SingleOrDefault();
+                                             .Select(x => new LoginResult { FirstName = x.FirstName, LastName = x.LastName, UserId = x.Id }).SingleOrDefault();
             if (loginResult != null)
             {
                 var token = GetJwtToken(loginResult.UserId);
@@ -68,7 +68,7 @@ namespace WelcomeToTurkeyAPI.Controllers
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Hava ne kadar guzel!")),
-                                                            SecurityAlgorithms.HmacSha256Signature),
+                  SecurityAlgorithms.HmacSha256Signature),
                 Claims = claims,
                 //IssuedAt = DateTime.Now,
                 //NotBefore = DateTime.Now

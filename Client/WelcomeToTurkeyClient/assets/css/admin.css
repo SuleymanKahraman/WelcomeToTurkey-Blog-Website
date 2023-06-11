@@ -1,75 +1,99 @@
 body {
-    font-family: "Lato", sans-serif;
-    margin: 0;
-    padding: 0;
-  }
+  font-family: "Lato", sans-serif;
+  margin: 0;
+  padding: 0;
+}
 
-  .sidebar {
-    height: 100%;
-    width: 250px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #111;
-    overflow-x: hidden;
-    padding-top: 60px;
-  }
+.sidebar {
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 60px;
+  transition: 0.5s;
+}
 
-  .sidebar a {
-    padding: 10px 16px;
-    text-decoration: none;
-    font-size: 18px;
-    color: #818181;
-    display: block;
-  }
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
 
-  .sidebar a:hover {
-    color: #f1f1f1;
-  }
+.sidebar a:hover {
+  color: #f1f1f1;
+}
 
-  .main {
-    margin-left: 250px;
-    padding: 20px;
-  }
+.main {
+  margin-left: 250px;
+  padding: 20px;
+  transition: 0.5s;
+}
 
-  .header {
-    position: fixed;
-    width: 100%;
-    background-color: #fff;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    z-index: 999;
-  }
+.header {
+  position: relative;
+  width: 100%;
+  background-color: #6f838d;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+}
 
-  .horizantal {
-     
-    display: flex;
-    list-style-type: none;
+.horizantal {
+  display: flex;
+  list-style-type: none;
+}
 
-  }
+.logo {
+  margin: 10px;
+  font-size: 24px;
+  font-weight: bold;
+}
 
-  .horizantal li {
-    margin-right: 20px;
-  }
+.menu-toggle {
+  margin: 10px 20px;
+  font-size: 20px;
+  cursor: pointer;
+}
 
-  .logo {
-    margin: 10px;
-    font-size: 24px;
-    font-weight: bold;
-  }
+.panel {
+  position: relative;
+  display: none;
+  padding: 20px;
+  transition: 0.5s;
+}
 
-  .menu-toggle {
-    margin: 10px 20px;
-    font-size: 20px;
-    cursor: pointer;
-  }
+.panel-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 20px;
+}
 
-  .admin-panel-title {
-    font-size: 24px;
-    font-weight: bold;
-    margin: 20px;
-  }
+.floating-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
 
-  .goto-website {
-    margin-right: 20px;
-  }
+.floating-btn:hover {
+  background-color: #0056b3;
+}
+
+
+

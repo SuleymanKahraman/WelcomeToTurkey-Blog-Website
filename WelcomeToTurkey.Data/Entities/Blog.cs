@@ -13,9 +13,9 @@ namespace WelcomeToTurkeyAPI.Data.Entities
         [Required]
         public string Title { get; set; }    
 
-        [Required]
+        
         public string Content { get; set; }
-        [Required]
+
         public DateTime PublishDate { get; set; }
 
         [Required]
@@ -23,7 +23,10 @@ namespace WelcomeToTurkeyAPI.Data.Entities
 
        
         [ForeignKey(nameof(CategoryId))]
-        public virtual Category Category { get; set; }  
+        public virtual Category Category { get; set; }
+
+        [Required]
+        public bool IsPublished { get; set; }
     }
 
 
