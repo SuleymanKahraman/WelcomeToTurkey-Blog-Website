@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel</title>
+    <!-- Template Main CSS Files -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="/assets/css/admin.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+
+  <body>
+    <!-- Header -->
+    <div class="header">
+
+        <ul class="horizantal">
+
+            <li><div class="logo"><i class="fas fa-cogs"></i> Admin Panel</div></li>
+            <li><div class="menu-toggle" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+              </div></li>
+            <li><a href="#"><i class="fa-solid fa-right-to-bracket"></i>Go To Website</a></li>
+        </ul>
+      <!-- <div class="logo"><i class="fas fa-cogs"></i> Admin Panel</div>
+      <div class="menu-toggle" id="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </div>
+      <button class="btn btn-primary goto-website">Go to Website</button> -->
+    </div>
+
+    <!-- The sidebar -->
+    <div class="sidebar" id="sidebar">
+      <a href="#"><i class="fa-solid fa-home"></i> Home</a>
+      <a href="#"><i class="fa solid fa-user"></i> Users</a>
+      <a href="#"><i class="fa-brands fa-blogger"></i> Blogs</a>
+      <a href="#"><i class="fa-solid fa-list"></i> Categories</a>
+      <a href="#"><i class="fa-solid fa-right-to-bracket"></i>Go To Website</a>
+    </div>
+
+    <div class="main">
+      <h2 class="admin-panel-title">Admin Panel</h2>
+      <p>This side navigation is of full height (100%) and always shown.</p>
+      <p>
+        Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset
+        concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius
+        te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et.
+        Inciderint efficiantur his ad. Eum no molestiae voluptatibus.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset
+        concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius
+        te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et.
+        Inciderint efficiantur his ad. Eum no molestiae voluptatibus.
+      </p>
+    </div>
+
+    <!-- JavaScript code to toggle the sidebar -->
+    <script>
+      const menuToggle = document.getElementById("menu-toggle");
+      const sidebar = document.getElementById("sidebar");
+
+      menuToggle.addEventListener("click", function () {
+        sidebar.classList.toggle("active");
+      });
+    </script>
+  </body>
+</html>

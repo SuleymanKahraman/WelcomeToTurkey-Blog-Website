@@ -1,4 +1,4 @@
-﻿namespace WelcomeToTurkeyAPI.Dtos
+﻿namespace WelcomeToTurkeyAPI.Dtos.CommentDtos
 {
     public class ListAllCommentDto
     {

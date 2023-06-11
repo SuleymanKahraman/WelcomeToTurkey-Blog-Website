@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using WelcomeToTurkeyAPI.Data;
 using WelcomeToTurkeyAPI.Data.Entities;
 using WelcomeToTurkeyAPI.Dtos;
+using WelcomeToTurkeyAPI.Dtos.CommentDtos;
 
 namespace WelcomeToTurkeyAPI.Controllers
 {

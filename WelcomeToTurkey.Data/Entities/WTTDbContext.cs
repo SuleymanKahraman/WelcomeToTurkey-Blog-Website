@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using WelcomeToTurkeyAPI.Data.Entities;
 
-namespace WelcomeToTurkeyAPI.Data
+namespace WelcomeToTurkeyAPI.Data.Entities
 {
-    public class WTTDbContext:DbContext
+    public class WTTDbContext : DbContext
     {
 
         public WTTDbContext(DbContextOptions opt) : base(opt) { }

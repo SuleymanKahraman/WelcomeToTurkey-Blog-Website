@@ -2,10 +2,9 @@
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
-using WelcomeToTurkeyAPI.Data;
 using WelcomeToTurkeyAPI.Data.Entities;
 using WelcomeToTurkeyAPI.Data.Enums;
-using WelcomeToTurkeyAPI.Dtos;
+using WelcomeToTurkeyAPI.Dtos.AuthDtos;
 
 namespace WelcomeToTurkeyAPI.Controllers
 {

@@ -1,5 +1,4 @@
-﻿
-namespace WelcomeToTurkeyAPI.Dtos
+﻿namespace WelcomeToTurkeyAPI.Dtos.BlogDtos
 {
     public class ListAllBlogsDto
     {

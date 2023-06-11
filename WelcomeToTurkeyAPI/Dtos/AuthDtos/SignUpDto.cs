@@ -1,4 +1,4 @@
-﻿namespace WelcomeToTurkeyAPI.Dtos
+﻿namespace WelcomeToTurkeyAPI.Dtos.AuthDtos
 {
     public class SignUpDto
     {

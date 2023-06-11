@@ -1,0 +1,75 @@
+body {
+    font-family: "Lato", sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  .sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 60px;
+  }
+
+  .sidebar a {
+    padding: 10px 16px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #818181;
+    display: block;
+  }
+
+  .sidebar a:hover {
+    color: #f1f1f1;
+  }
+
+  .main {
+    margin-left: 250px;
+    padding: 20px;
+  }
+
+  .header {
+    position: fixed;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+  }
+
+  .horizantal {
+     
+    display: flex;
+    list-style-type: none;
+
+  }
+
+  .horizantal li {
+    margin-right: 20px;
+  }
+
+  .logo {
+    margin: 10px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .menu-toggle {
+    margin: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  .admin-panel-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 20px;
+  }
+
+  .goto-website {
+    margin-right: 20px;
+  }
