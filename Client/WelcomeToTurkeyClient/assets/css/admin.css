@@ -62,10 +62,18 @@ body {
 }
 
 .panel {
-  position: relative;
-  display: none;
+  position: fixed;
+  top: 50px;
+  width: 75%;
+  bottom: 0;
+  height: 0;
   padding: 20px;
-  transition: 0.5s;
+  overflow: hidden;
+}
+
+.panel.open{
+  height: 100%;
+  transition: height 0.8s;
 }
 
 .panel-title {
@@ -75,9 +83,8 @@ body {
 }
 
 .floating-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
+  position: relative;
+  margin-left: 90%;
   background-color: #007bff;
   color: #fff;
   border-radius: 50%;

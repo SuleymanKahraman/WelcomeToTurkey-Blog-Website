@@ -45,10 +45,109 @@
   </head>
 
   <body>
-    <!-- Modal -->
+    <!-- Modal-Add-Category-->
     <div
       class="modal fade"
-      id="exampleModal"
+      id="modal-add-category"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">
+              Add Category
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form class="form-group" action="admin.html" method="post">
+              <div>
+                <label for="category">Category Name: </label>
+              </div>
+              <div>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="add-category"
+                  placeholder="Enter New Category"
+                  style="margin-top: 1%"
+                />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              class="btn btn-danger"
+              onclick="addNewCategory()"
+            >
+              Add
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal-Delete-Category -->
+    <div
+      class="modal fade"
+      id="modal-delete-category"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">
+              Delete Category
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure you want to delete this category?</p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              onclick="confirmDelete()"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal-Add-Blog -->
+    <div
+      class="modal fade"
+      id="add-new-blog"
       tabindex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
@@ -79,8 +178,6 @@
                 <label for="category">Category</label>
                 <select class="form-select" id="category-for-blog">
                   <option value="">Choosing...</option>
-                  <option value="">Relationship</option>
-                  <option value="">Politics</option>
                 </select>
               </div>
             </form>
@@ -93,7 +190,13 @@
             >
               Cancel
             </button>
-            <button type="button" class="btn btn-danger">Add</button>
+            <button
+              type="submit"
+              class="btn btn-success"
+              onclick="addNewBlog()"
+            >
+              Add
+            </button>
           </div>
         </div>
       </div>
@@ -140,7 +243,7 @@
 
     <!-- The Main -->
     <div class="main" id="main">
-      <div class="panel" id="home-panel">
+      <div id="home-panel" class="panel">
         <h2 class="panel-title">Home Panel</h2>
         <p>Çeşitli Kartlar</p>
         <p>Kaç post kaç entry</p>
@@ -230,23 +333,8 @@
                 <th>Details</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <th>1</th>
-                <td>Love</td>
-                <td>Relationship</td>
-                <td>6/12/2020</td>
-                <td>True/False</td>
-                <td>
-                  <a
-                    href="/blog-detail-for-admin.html"
-                    class="btn btn-info btn-sm"
-                  >
-                    <i class="bi bi-gear"></i>
-                  </a>
-                </td>
-                <td></td>
-              </tr>
+            <tbody id="blog-table">
+
             </tbody>
           </table>
         </div>
@@ -273,7 +361,7 @@
           href="#"
           class="floating-btn"
           data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
+          data-bs-target="#add-new-blog"
         >
           <i class="bi bi-plus"></i>
         </a>
@@ -293,62 +381,7 @@
             <tbody id="table-categories"></tbody>
           </table>
         </div>
-        <!-- Modal-Add-Category-->
-        <div
-          class="modal fade"
-          id="modal-add-category"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">
-                  Add Category
-                </h1>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body">
-                <form class="form-group" action="admin.html" method="post">
-                  <div>
-                    <label for="category">Category Name: </label>
-                  </div>
-                  <div>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="add-category"
-                      placeholder="Enter New Category"
-                      style="margin-top: 1%"
-                    />
-                  </div>
-                </form>
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-bs-dismiss="modal"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  class="btn btn-danger"
-                  onclick="addNewCategory()"
-                >
-                  Add
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+
         <div>
           <a
             href="#"
@@ -373,24 +406,31 @@
 
     <!-- JavaScript code to toggle the sidebar -->
     <script>
+      var categories = [];
       ListOfCategories();
+      ListBlogs();
       function ListOfCategories() {
+        const forBlog = document.getElementById("category-for-blog");
+        const table = document.getElementById("table-categories");
+        let i = 0;
         axios
-          .get(`https://localhost:7202/api/Admin/list-category-with-Id`)
+          .get(`https://localhost:7202/api/admin/list-category-with-Id`)
           .then((response) => {
-            var categories = [];
-            categories = response.data; 
-            let i = 0;
-            const table = document.getElementById("table-categories");
+            categories = response.data;
             categories.forEach((element) => {
               var tr = ``;
+              var option = ``;
+              option += `<option value="${element.categoryId}">${element.categoryName}</option>`;
               tr += `<tr>`;
               tr += `<td>${++i}.</td>`;
               tr += ` <td>${element.categoryName}</td>`;
               tr += `<td> <a href="${element.categoryId}">Update</a></td>`;
-              tr += `<td> <a href="${element.categoryId}">Delete</a></td>`;
-              tr+=`</tr>`;
-              table.innerHTML += tr; 
+              tr += `<td> <button type="button" class="btn btn-danger" 
+                          onclick="getCategoryId(${element.categoryId})"> 
+                          <i class="bi bi-trash"></i></button></td>`;
+              tr += `</tr>`;
+              table.innerHTML += tr;
+              forBlog.innerHTML += option;
             });
           })
           .catch((error) => {
@@ -398,6 +438,40 @@
             alert("Olmadı!!!");
           });
       }
+
+      function ListBlogs() {
+        const table = document.getElementById("blog-table");
+        let i = 0;
+        axios
+          .get(`https://localhost:7202/api/admin/list-blog-with-Id`)
+          .then((response) => {
+            var blogs = [];
+            blogs = response.data;
+            blogs.forEach((element) => {
+              var tr = ``;
+              tr += `<tr>`;
+              tr += `<td>${++i}.</td>`;
+              tr += `<td>${element.title}</td>`;
+              tr += `<td>${element.category}</td>`;
+              tr += `<td>${element.publishDate === '0001-01-01T00:00:00' ? '-' : element.publishDate}</td>`;
+              tr += `<td>${element.isPublished ? "Published" : "Waiting For Publishing"}</td>`;
+              tr += `<td>
+                  <a
+                    href="/blog-detail-for-admin.html?blogId=${element.blogId}"
+                    class="btn btn-info btn-sm"
+                  >
+                    <i class="bi bi-gear"></i>
+                  </a>
+                </td>`;
+              table.innerHTML += tr;
+            });
+          })
+          .catch((error) => {
+            console.log(error);
+            alert("Olmadı!!!");
+          });
+      }
+
       function addNewCategory() {
         const categoryName = document.getElementById("add-category").value;
         if (categoryName) {
@@ -418,10 +492,39 @@
       function addNewBlog() {
         const newBlog = {
           title: document.getElementById("title-for-blog").value,
-          category: document.getElementById("category-for-blog").value,
+          categoryId: document.getElementById("category-for-blog").value,
         };
+        console.log(newBlog);
+        debugger;
+        axios
+          .post(`https://localhost:7202/api/admin/add-new-blog`, newBlog)
+          .then((response) => {
+            if (response) {
+              alert(response.data);
+              location.reload();
+            }
+          });
+      }
+      let categoryIdFordelete;
 
-        axios.post(`https://localhost:7202/api/`);
+      function getCategoryId(id) {
+        console.log(id);
+        debugger;
+        categoryIdFordelete = id;
+      }
+
+      function confirmDelete() {
+        if (categoryIdFordelete) {
+          let categoryId = categoryIdFordelete;
+          axios
+            .delete(
+              `https://localhost:7202/api/admin/delete-category-by-Id/${categoryId}`
+            )
+            .then((response) => {
+              alert("İşlem Başarılı");
+              location.reload();
+            });
+        }
       }
 
       function openNavBar() {
@@ -444,9 +547,9 @@
         for (let i = 0; i < panels.length; i++) {
           const panel = panels[i];
           if (panel.id === panelId) {
-            panel.style.display = "block";
+            panel.classList.add("open");
           } else {
-            panel.style.display = "none";
+            panel.classList.remove("open");
           }
         }
       }

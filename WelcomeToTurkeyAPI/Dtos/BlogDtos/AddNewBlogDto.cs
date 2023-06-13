@@ -2,7 +2,7 @@
 {
     public class AddNewBlogDto
     {
-        public string Category { get; set; }
+        public int CategoryId { get; set; }
         public string Title { get; set; }
 
     }

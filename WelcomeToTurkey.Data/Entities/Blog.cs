@@ -27,6 +27,8 @@ namespace WelcomeToTurkeyAPI.Data.Entities
 
         [Required]
         public bool IsPublished { get; set; }
+
+        public byte[] Photo { get; set; }
     }
 
 

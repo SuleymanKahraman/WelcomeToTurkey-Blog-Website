@@ -25,19 +25,41 @@ namespace WelcomeToTurkeyAPI.Controllers
 
         public IActionResult ListCategory()
         {
-            var categories = dbContext.Categories.Select(x=> new ListOfCategories
+            var categories = dbContext.Categories.Select(x => new ListOfCategories
             {
                 CategoryId = x.Id,
-                CategoryName  =x.CategoryName
+                CategoryName = x.CategoryName
             }).ToList();
 
-            if(categories !=null)
+            if (categories != null)
             {
                 return Ok(categories);
             }
             return BadRequest();
         }
-            
+
+        // List Of Blogs
+
+        [HttpGet("list-blog-with-Id")]
+        public IActionResult ListBlogs()
+        {
+            var blogs = dbContext.Blogs.Select(x => new ListAllBlogsDto
+            {
+                BlogId = x.Id,
+                Title = x.Title,
+                Category = x.Category.CategoryName,
+                Content = x.Content,
+                PublishDate = x.PublishDate,
+                IsPublished = x.IsPublished
+
+            }).ToList();
+
+            if (blogs != null)
+            {
+                return Ok(blogs);
+            }
+            return BadRequest();
+        }
 
         // ADD CATEGORY
 
@@ -65,27 +87,50 @@ namespace WelcomeToTurkeyAPI.Controllers
 
         }
 
-        [HttpPost("add-blog")]
+        [HttpPost("add-new-blog")]
 
-        public IActionResult AddNewBlog([FromBody] AddNewBlogDto blog)
+        public IActionResult AddNewBlog([FromBody] AddNewBlogDto newBlog)
         {
-            //var newBlog = new Blog()
-            //{
-            //    Title = blog.Title,
+            var blog = new Blog()
+            {
+                Title = newBlog.Title,
+                CategoryId = newBlog.CategoryId,
+                IsPublished = false
+            };
 
+            if (blog is not null)
+            {
+                dbContext.Add(blog);
+                var result = dbContext.SaveChanges();
+                if (result > 0) { return Ok("İşlem Başarılı..."); }
+                return BadRequest();
+            }
+            return Ok("İşlem Başarısız!!!");
 
-            //}
-            return Ok();
         }
 
         /*DELETE TRANSACTIONS*/
 
         // Delete Categories
         [HttpDelete("delete-category-by-Id/{categoryId}")]
-        public IActionResult DeleteCategoryById([FromRoute] int id)
+        public IActionResult DeleteCategoryById([FromRoute] int categoryId)
         {
-            return Ok();
+            var categoryById = dbContext.Categories.SingleOrDefault(c => c.Id == categoryId);
+            if (categoryById != null)
+            {
+                dbContext.Categories.Remove(categoryById);
+                var result = dbContext.SaveChanges();
+                if (result > 0)
+                {
+                    return Ok();
+                }
+                return BadRequest();
+
+            }
+            return BadRequest();
+
         }
+
 
     }
 }
