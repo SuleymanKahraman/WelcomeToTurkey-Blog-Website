@@ -17,6 +17,8 @@ namespace WelcomeToTurkeyAPI.Controllers
             this.dbContext = dbContext;
         }
 
+
+
         /* LIST TRANSACTIONS */
 
         // List Of Categories
@@ -60,6 +62,29 @@ namespace WelcomeToTurkeyAPI.Controllers
             }
             return BadRequest();
         }
+
+        // List Of Blog By Id
+
+        [HttpGet("get-blog-by-Id/{blogId}")]
+        public IActionResult GetBlogById([FromRoute] int blogId)
+        {
+            var blogById = dbContext.Blogs.Where(b => b.Id == blogId).Select(b => new GetBlogByIdDto
+            {
+                Title = b.Title,
+                Category = b.Category.CategoryName,
+                Content = b.Content,
+                PublishDate = b.PublishDate,
+                IsPublished = b.IsPublished,
+                Photo = b.Photo != null ? Convert.ToBase64String(b.Photo) : null
+            }).SingleOrDefault();
+
+            if (blogById != null)
+            {
+                return Ok(blogById);
+            }
+            return BadRequest();
+        }
+
 
         // ADD CATEGORY
 
@@ -107,6 +132,40 @@ namespace WelcomeToTurkeyAPI.Controllers
             }
             return Ok("İşlem Başarısız!!!");
 
+        }
+        /*UPDATE TRANSACTIONS*/
+
+        [HttpPut("update-blog-by-Id")]
+
+        public IActionResult UpdateBlogById([FromForm] UpdateBlogByIdDto update)
+        {
+            byte[] photo;
+            var currentBlog = dbContext.Blogs.SingleOrDefault(b => b.Id == update.BlogId);
+            if (currentBlog is not null)
+            {
+                currentBlog.Title = update.Title;
+                currentBlog.Content = update.Content;
+                currentBlog.IsPublished = update.IsPublished;
+                if (update.IsPublished)
+                {
+                    currentBlog.PublishDate = DateTime.Now;
+                }
+                currentBlog.CategoryId = update.CategoryId;
+                if (update.Photo != null)
+                {
+                    using (MemoryStream stream = new MemoryStream())
+                    {
+                        update.Photo.CopyTo(stream);
+                        photo = stream.ToArray();
+                    }
+                    currentBlog.Photo = photo;
+                }
+                var result = dbContext.SaveChanges();
+                if (result > 0) { return Ok("Güncelleme İşlemi Başarılı..."); }
+                return BadRequest();
+
+            }
+            return Ok();
         }
 
         /*DELETE TRANSACTIONS*/
