@@ -59,7 +59,7 @@ namespace WelcomeToTurkeyAPI.Controllers
                     Category=c.CategoryName,
                     Content=b.Content,
                     Title = b.Title,    
-                    PublishDate=b.PublishDate,
+                    PublishDate=b.PublishDate.ToShortDateString(),
 
                 }).ToList();
 

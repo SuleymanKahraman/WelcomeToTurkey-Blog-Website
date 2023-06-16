@@ -46,6 +46,31 @@
 </head>
 
 <body>
+
+  <!-- Modal-Delete-Category -->
+  <div class="modal fade" id="modal-delete-blog" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">
+            Delete Blog
+          </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to delete this blog?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Cancel
+          </button>
+          <button type="button" class="btn btn-danger" id="deleteBlogButton">
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- ======= Header ======= -->
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
@@ -67,6 +92,9 @@
               <div class="dropdown-content"></div>
             </div>
           </div>
+        </a>
+        <a class="mx-2" type="button" href="/admin.html">
+          Go Back <i class="bi bi-back"></i>
         </a>
         <!-- ======= Search Form ======= -->
         <div class="search-form-wrap js-search-form-wrap">
@@ -90,7 +118,6 @@
         <div class="row">
           <div class="col-md-9 post-content" data-aos="fade-up">
             <!-- ======= Single Post Content ======= -->
-
             <form class="form-group" action="blog-detail-for-admin.html" id="blog-guncelle-form">
               <div class="single-post">
                 <div class="post">
@@ -100,14 +127,14 @@
                 </div>
                 <div>
                   <span>Choose New: </span>
-                  <select id="newCategory">
-                    <option value=""></option>
+                  <select class="form-select" id="newCategory">
+                    <option value=0></option>
                   </select>
                 </div>
                 <br>
-                <div class="post mb-3">
+                <div class="col-12 post mb-3">
                   <h1 id="title">Title</h1>
-                  <input type="text" name="title" id="newTitle" placeholder="insert title...">
+                  <input type="text" class="form-control" id="newTitle" placeholder="insert title...">
                 </div>
                 <div class="col-12 d-flex flex-column justify-content-center align-items-center">
                   <div style="
@@ -127,22 +154,31 @@
                 </div>
                 <br>
                 <div class="col-12 d-flex flex-column justify-content-center align-items-center">
+                  <h4> <b> INSERT CONTENT OF TITLE </b> </h4>
                   <textarea id="blogContent" style="height: 200px; width: 95%;">
                     Possimus temporibus rerum illo quia repudiandae provident
                     sed quas atque. Ipsam adipisci accusamus iste optio illo
-                    aliquam molestias? Voluptatibus, veniam recusandae facilis
-                    nobis perspiciatis rem similique, nisi ad explicabo ipsa
-                    voluptatum, inventore molestiae natus adipisci? Fuga
-                    delectus quia assumenda totam aspernatur. Nobis hic ea rem,
-                    quaerat voluptate vero illum laboriosam omnis aspernatur
-                    labore, natus ex iusto ducimus exercitationem a officia.
+                    aliquam molestias?
                   </textarea>
                 </div>
-              </div>
-              <br><br>
-              <div style="margin-left: 50%;">
-                <span id="isPublished"><b>Not Publised</b><span><br>
-                    <button type="button" onclick="PublishPost()">Publised</button>
+                <div class="text-center">
+                  <span id="isPublished"><b>Not Publised</b><span><br>
+                      <button type="button" onclick="PublishPost()">Published</button>
+                </div>
+                <br><br>
+                <div class="row">
+                  <div class="col-6">
+                    <button type="submit" class="btn btn-primary">
+                      <i class="bi bi-pencil-fill"></i>
+                      Update
+                    </button>
+                  </div>
+                  <div class="col-6 text-end">
+                    <button type="button" class="btn btn-danger" onclick="deleteBlog()">
+                      <i class="bi bi-trash"></i> Delete
+                    </button>
+                  </div>
+                </div>
               </div>
             </form>
             <!-- End Single Post Content -->
@@ -291,7 +327,7 @@
   <script>
     var photo;
     let blogId;
-    let isPublished; 
+    let isPublished = false;
     const params = new Proxy(new URLSearchParams(window.location.search), {
       get: (searchParams, prop) => searchParams.get(prop),
     });
@@ -300,7 +336,6 @@
     } else {
       window.location.href = "/admin.html";
     }
-    const updateForm = document.getElementById("blog-guncelle-form");
     LoadBlogDetail();
     ListOfCategories();
     function LoadBlogDetail() {
@@ -308,13 +343,18 @@
         .get(`https://localhost:7202/api/admin/get-blog-by-Id/${blogId}`)
         .then((response) => {
           if (response.data) {
+            console.log(response.data);
+            debugger;
             let blog = response.data;
             document.getElementById("category").innerHTML = blog.category;
             document.getElementById("title").innerHTML = blog.title;
             document.getElementById("publishDate").innerHTML =
-              blog.publishDate === "0001-01-01T00:00:00"
+              blog.publishDate === "1.01.0001"
                 ? "Not Publised"
                 : blog.publishDate;
+            if (blog.isPublished) {
+              PublishPost();
+            }
             document.getElementById("blogContent").innerHTML = blog.content;
             let photo = document.getElementById('photo-display');
             photo.src = blog.photo != null ? "data:image/jpeg;base64," + blog.photo : photo.src;
@@ -343,13 +383,66 @@
           alert("Olmadı!!!");
         });
     }
-    
-    function PublishPost(){
-      isPublished=true;
+
+    function PublishPost() {
+      isPublished = true;
       const isPublishedSpan = document.getElementById('isPublished');
       isPublishedSpan.innerHTML = '<b>Published</b>';
     }
-    function updateBlog(params) { }
+
+    const updateForm = document.getElementById("blog-guncelle-form");
+    updateForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+      let updateBlog = new FormData();
+      updateBlog.append('BlogId', blogId);
+      updateBlog.append('CategoryId', document.getElementById('newCategory').value);
+      updateBlog.append('Content', document.getElementById('blogContent').value);
+      updateBlog.append('Title', document.getElementById('newTitle').value);
+      updateBlog.append('IsPublished', isPublished);
+      updateBlog.append('Photo', photo);
+      axios.put(`https://localhost:7202/api/admin/update-blog-by-Id`, updateBlog, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }).then((response) => {
+        if (response) {
+          alert(response.data);
+          location.reload();
+        }
+      }).catch((error) => {
+        alert(error);
+      })
+
+    })
+
+
+
+    function deleteBlog() {
+      const modalDelete = document.getElementById("modal-delete-blog");
+      const modalOpen = new bootstrap.Modal(modalDelete);
+      modalOpen.show();
+
+      document.getElementById('deleteBlogButton').addEventListener('click', function () {
+        axios
+          .delete(`https://localhost:7202/api/admin/delete-blog-by-Id/${blogId}`)
+          .then((response) => {
+
+            console.log(response.data);
+            debugger;
+            if (response) {
+              alert(response.data);
+              window.location.href = "/admin.html";
+            }
+
+          })
+
+      })
+
+
+
+    }
+
+
   </script>
 </body>
 

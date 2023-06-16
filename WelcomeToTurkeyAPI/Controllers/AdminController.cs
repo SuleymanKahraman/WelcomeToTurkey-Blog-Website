@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using WelcomeToTurkeyAPI.Data.Entities;
 using WelcomeToTurkeyAPI.Dtos.BlogDtos;
 using WelcomeToTurkeyAPI.Dtos.CategoryDtos;
+using WelcomeToTurkeyAPI.Dtos.UsersDtos;
 
 namespace WelcomeToTurkeyAPI.Controllers
 {
@@ -21,13 +22,40 @@ namespace WelcomeToTurkeyAPI.Controllers
 
         /* LIST TRANSACTIONS */
 
+        // List Of Users
+
+        [HttpPost("list-all-users")]
+        public IActionResult GetUsersByFilter([FromBody] GetUserByFiltered filter)
+        {
+            var users = dbContext.Users.Select(x => new ListOfUsersByFilter
+            {
+                UserId = x.Id,
+                FirstName = x.FirstName,
+                LastName = x.LastName,
+                EmailAdress = x.EmailAdress,
+                UserType = x.UserType,
+            }).ToList();
+
+            if(filter.FilterChars != null)
+            {
+                users = users.Where(u => u.LastName.StartsWith(filter.FilterChars)).ToList();
+            }
+            if(filter.UserType == Data.Enums.UserTypes.Admin)
+            {
+               users= users.Where(u => u.UserType == Data.Enums.UserTypes.Admin).ToList();
+            }
+
+            return Ok(users);
+
+        }
+
         // List Of Categories
 
         [HttpGet("list-category-with-Id")]
 
         public IActionResult ListCategory()
         {
-            var categories = dbContext.Categories.Select(x => new ListOfCategories
+            var categories = dbContext.Categories.Select(x => new OptionCategory
             {
                 CategoryId = x.Id,
                 CategoryName = x.CategoryName
@@ -51,7 +79,7 @@ namespace WelcomeToTurkeyAPI.Controllers
                 Title = x.Title,
                 Category = x.Category.CategoryName,
                 Content = x.Content,
-                PublishDate = x.PublishDate,
+                PublishDate = x.PublishDate.ToShortDateString(),
                 IsPublished = x.IsPublished
 
             }).ToList();
@@ -73,7 +101,7 @@ namespace WelcomeToTurkeyAPI.Controllers
                 Title = b.Title,
                 Category = b.Category.CategoryName,
                 Content = b.Content,
-                PublishDate = b.PublishDate,
+                PublishDate = b.PublishDate.ToShortDateString(),
                 IsPublished = b.IsPublished,
                 Photo = b.Photo != null ? Convert.ToBase64String(b.Photo) : null
             }).SingleOrDefault();
@@ -85,6 +113,25 @@ namespace WelcomeToTurkeyAPI.Controllers
             return BadRequest();
         }
 
+        // List Blog By Filter
+
+        [HttpPost("list-blog-by-filter/{categoryId}")]
+
+        public IActionResult ListByFilter([FromRoute] int categoryId)
+        {
+            var filteredData = dbContext.Blogs.Where(b => b.CategoryId == categoryId).Select(x => new ListAllBlogsDto
+            {
+                BlogId = x.Id,
+                Title = x.Title,
+                Category = x.Category.CategoryName,
+                Content = x.Content,
+                PublishDate = x.PublishDate.ToShortDateString(),
+                IsPublished = x.IsPublished,
+            }).ToList();
+            if (filteredData != null) { return Ok(filteredData); }
+            return BadRequest();
+
+        }
 
         // ADD CATEGORY
 
@@ -133,24 +180,25 @@ namespace WelcomeToTurkeyAPI.Controllers
             return Ok("İşlem Başarısız!!!");
 
         }
-        /*UPDATE TRANSACTIONS*/
+        /* UPDATE TRANSACTIONS */
+
+        //Update Blog By Id
 
         [HttpPut("update-blog-by-Id")]
-
-        public IActionResult UpdateBlogById([FromForm] UpdateBlogByIdDto update)
+        public IActionResult UpdateBlogById([FromForm]  UpdateBlogByIdDto update)
         {
             byte[] photo;
             var currentBlog = dbContext.Blogs.SingleOrDefault(b => b.Id == update.BlogId);
             if (currentBlog is not null)
             {
-                currentBlog.Title = update.Title;
-                currentBlog.Content = update.Content;
+                currentBlog.Title = update.Title != null ? update.Title : currentBlog.Title;
+                currentBlog.Content = update.Content != null ? update.Content : currentBlog.Content;
                 currentBlog.IsPublished = update.IsPublished;
                 if (update.IsPublished)
                 {
                     currentBlog.PublishDate = DateTime.Now;
                 }
-                currentBlog.CategoryId = update.CategoryId;
+                currentBlog.CategoryId = update.CategoryId != 0 ? update.CategoryId : currentBlog.CategoryId;
                 if (update.Photo != null)
                 {
                     using (MemoryStream stream = new MemoryStream())
@@ -162,10 +210,30 @@ namespace WelcomeToTurkeyAPI.Controllers
                 }
                 var result = dbContext.SaveChanges();
                 if (result > 0) { return Ok("Güncelleme İşlemi Başarılı..."); }
-                return BadRequest();
+                return Ok("Değişiklik Yapmadınız!!!");
 
             }
             return Ok();
+        }
+
+        // Update Category By Id
+
+        [HttpPut("update-category-by-Id")]
+        public IActionResult UpdateCategoryById([FromBody] OptionCategory opt)
+        {
+            var currentCategroy = dbContext.Categories.SingleOrDefault(c => c.Id == opt.CategoryId);
+            if (currentCategroy is not null)
+            {
+                currentCategroy.CategoryName = opt.CategoryName;
+                var result = dbContext.SaveChanges();
+                if (result > 0)
+                {
+                    return Ok("Güncelleme İşlemi Başarılı...");
+                }
+                return BadRequest();
+
+            }
+            return Ok("Category Bulunamamıştır!!!");
         }
 
         /*DELETE TRANSACTIONS*/
@@ -189,6 +257,29 @@ namespace WelcomeToTurkeyAPI.Controllers
             return BadRequest();
 
         }
+
+        // Delete Blog By Id
+
+        [HttpDelete("delete-blog-by-Id/{blogId}")]
+        public IActionResult DeleteBlogById([FromRoute] int blogId)
+        {
+            var blog = dbContext.Blogs.SingleOrDefault(b => b.Id == blogId);
+            if (blog != null)
+            {
+                dbContext.Blogs.Remove(blog);
+                var result = dbContext.SaveChanges();
+                if (result > 0)
+                {
+                    return Ok("Silme İşlemi Başarılı");
+                }
+                return BadRequest();
+
+            }
+            return BadRequest("İlgili blog mevcut değil.");
+
+        }
+
+
 
 
     }
