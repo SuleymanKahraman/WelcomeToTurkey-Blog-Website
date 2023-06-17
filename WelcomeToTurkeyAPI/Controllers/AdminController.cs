@@ -33,16 +33,17 @@ namespace WelcomeToTurkeyAPI.Controllers
                 FirstName = x.FirstName,
                 LastName = x.LastName,
                 EmailAdress = x.EmailAdress,
-                UserType = x.UserType,
+                UserType = x.UserType == Data.Enums.UserTypes.User ? "User" : "Admin"
             }).ToList();
 
-            if(filter.FilterChars != null)
+            if (filter.FilterChars != null)
             {
-                users = users.Where(u => u.LastName.StartsWith(filter.FilterChars)).ToList();
+
+                users = users.Where(u => u.LastName.StartsWith(filter.FilterChars, StringComparison.OrdinalIgnoreCase)).ToList();
             }
-            if(filter.UserType == Data.Enums.UserTypes.Admin)
+            if (filter.UserType == 0)
             {
-               users= users.Where(u => u.UserType == Data.Enums.UserTypes.Admin).ToList();
+                users = users.Where(u => u.UserType == "Admin").ToList();
             }
 
             return Ok(users);
@@ -73,7 +74,7 @@ namespace WelcomeToTurkeyAPI.Controllers
         [HttpGet("list-blog-with-Id")]
         public IActionResult ListBlogs()
         {
-            var blogs = dbContext.Blogs.Select(x => new ListAllBlogsDto
+            var blogs = dbContext.Blogs.Select(x => new ListBlogsByFilter
             {
                 BlogId = x.Id,
                 Title = x.Title,
@@ -119,7 +120,7 @@ namespace WelcomeToTurkeyAPI.Controllers
 
         public IActionResult ListByFilter([FromRoute] int categoryId)
         {
-            var filteredData = dbContext.Blogs.Where(b => b.CategoryId == categoryId).Select(x => new ListAllBlogsDto
+            var filteredData = dbContext.Blogs.Where(b => b.CategoryId == categoryId).Select(x => new ListBlogsByFilter
             {
                 BlogId = x.Id,
                 Title = x.Title,
@@ -185,7 +186,7 @@ namespace WelcomeToTurkeyAPI.Controllers
         //Update Blog By Id
 
         [HttpPut("update-blog-by-Id")]
-        public IActionResult UpdateBlogById([FromForm]  UpdateBlogByIdDto update)
+        public IActionResult UpdateBlogById([FromForm] UpdateBlogByIdDto update)
         {
             byte[] photo;
             var currentBlog = dbContext.Blogs.SingleOrDefault(b => b.Id == update.BlogId);
@@ -236,6 +237,24 @@ namespace WelcomeToTurkeyAPI.Controllers
             return Ok("Category Bulunamamıştır!!!");
         }
 
+        [HttpPut("change-user-type/{userId}")]
+        public IActionResult ChangeUserType([FromRoute] int userId)
+        {
+            var user = dbContext.Users.SingleOrDefault(u => u.Id == userId);
+            if (user is not null)
+            {
+                user.UserType = Data.Enums.UserTypes.Admin;
+                var result = dbContext.SaveChanges();   
+                if (result > 0)
+                {
+                    return Ok("İşlem Başarılı...");
+                }
+                return Ok("İşlem Başarısız!!!");
+               
+            }
+            return Ok();
+        }
+
         /*DELETE TRANSACTIONS*/
 
         // Delete Categories
@@ -276,6 +295,27 @@ namespace WelcomeToTurkeyAPI.Controllers
 
             }
             return BadRequest("İlgili blog mevcut değil.");
+
+        }
+
+        // Delete User By Id
+
+        [HttpDelete("delete-user-by-Id/{userId}")]
+        public IActionResult DeleteUserById([FromRoute] int userId)
+        {
+            var user = dbContext.Users.SingleOrDefault(u => u.Id == userId);
+            if (user != null)
+            {
+                dbContext.Users.Remove(user);
+                var result = dbContext.SaveChanges();
+                if (result > 0)
+                {
+                    return Ok("Silme İşlemi Başarılı");
+                }
+                return BadRequest();
+
+            }
+            return BadRequest("İlgili user mevcut değil.");
 
         }
 

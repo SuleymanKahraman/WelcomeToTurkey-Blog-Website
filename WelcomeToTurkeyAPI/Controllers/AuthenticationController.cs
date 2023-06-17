@@ -18,11 +18,21 @@ namespace WelcomeToTurkeyAPI.Controllers
         {
             this.dbContext = dbContext;
         }
+
+        // TODO: login process
+
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginDto opt)
         {
-            var loginResult = dbContext.Users.Where(x => x.EmailAdress == opt.Email && x.Password == opt.Password)
-                                             .Select(x => new LoginResult { FirstName = x.FirstName, LastName = x.LastName, UserId = x.Id }).SingleOrDefault();
+            var loginResult = dbContext.Users.Where(x => x.EmailAdress == opt.Email && x.Password == opt.Password).Select(x => new LoginResult
+            {
+                FirstName = x.FirstName,
+                LastName = x.LastName,
+                UserId = x.Id,
+                UserType = x.UserType.ToString()
+
+            }).SingleOrDefault();
+
             if (loginResult != null)
             {
                 var token = GetJwtToken(loginResult.UserId);
@@ -32,6 +42,8 @@ namespace WelcomeToTurkeyAPI.Controllers
             }
             return BadRequest();
         }
+
+        //TODO: sign-up process
 
         [HttpPost("sign_up")]
 
@@ -59,6 +71,7 @@ namespace WelcomeToTurkeyAPI.Controllers
             }
         }
 
+        //TODO: Produce JwtToken For Authorize Process
         private string GetJwtToken(int userId)
         {
             var claims = new Dictionary<string, object>

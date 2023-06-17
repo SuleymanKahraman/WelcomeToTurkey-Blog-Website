@@ -19,6 +19,10 @@ namespace WelcomeToTurkeyAPI.Controllers
         {
             this.dbContext = dbContext;
         }
+
+        /* ADD PROCESS */
+
+        //TODO: add-comment
         [HttpPost("add-comment")]
         public IActionResult AddNewComment([FromBody] AddNewCommentDto dto)
         {
@@ -31,6 +35,10 @@ namespace WelcomeToTurkeyAPI.Controllers
             }
             return BadRequest();
         }
+
+        /* LIST PROCESS */
+
+        //TODO: list-comment
 
         [HttpGet("list-comment/{blogId}")]
         public IActionResult ListAllComment([FromRoute] int blogId)
@@ -46,26 +54,26 @@ namespace WelcomeToTurkeyAPI.Controllers
             return Ok(comments);
         }
 
+        //TODO: list-blog
+
         [HttpGet("list-blog")]
         [AllowAnonymous]
         public IActionResult ListAllBlogs()
         {
-            var blogs = dbContext.Blogs.Join(dbContext.Categories,
-                b => b.CategoryId,
-                c => c.Id,
-                (b, c) => new ListAllBlogsDto
-                {
-                    BlogId = b.Id,
-                    Category=c.CategoryName,
-                    Content=b.Content,
-                    Title = b.Title,    
-                    PublishDate=b.PublishDate.ToShortDateString(),
+            var blogs = dbContext.Blogs.Where(b => b.IsPublished == true).Select(b => new ListAllBlogsDto
+            {
+                BlogId = b.Id,
+                Title = b.Title,
+                PublishDate = b.PublishDate.ToShortDateString(),
+                Category = b.Category.CategoryName,
+                Photo = b.Photo != null ? Convert.ToBase64String(b.Photo) : null
+            }).ToList();
+            if(blogs is not null)
+            {
+                return Ok(blogs);
+            }
+            return BadRequest();
 
-                }).ToList();
-
-
-
-            return Ok(blogs);
         }
         [HttpDelete("delete-comment/{commentId}")]
         public IActionResult DeleteCommentById([FromRoute] int commentId)
