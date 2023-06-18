@@ -49,6 +49,11 @@ namespace WelcomeToTurkeyAPI.Controllers
 
         public IActionResult SignUpUser([FromBody] SignUpDto opt)
         {
+            var conflict = dbContext.Users.Any(x => x.EmailAdress == opt.Email);
+            if(conflict)
+            {
+                return BadRequest("already_exists");
+            }
 
             var signUpEntity = new User()
             {

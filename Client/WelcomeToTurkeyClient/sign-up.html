@@ -48,6 +48,7 @@
           <h3 class="text-center mb-0">Sign Up</h3>
         </div>
         <div class="card-body">
+          <div class="alert alert-danger d-none" id="required-alert">Boş alan bırakılamaz...</div>
           <form id="signup-form" action="sign-up.html">
             <div class="row mb-3">
               <div class="col">
@@ -83,7 +84,9 @@
               />
             </div>
             <div class="d-grid gap-2">
-              <button type="submit" class="btn btn-primary">Sign Up</button>
+              <button type="submit" class="btn btn-primary" id="sign-up-button">
+                Sign Up
+              </button>
             </div>
           </form>
         </div>
@@ -101,20 +104,28 @@
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
     <script>
+      // boşluk validasyonu yapılacak
       const form = document.getElementById("signup-form");
+      let button = document.getElementById("sign-up-button");
 
       form.addEventListener("submit", function (event) {
+        var alertDiv = document.getElementById("required-alert");
+        alertDiv.innerHTML = "Boş alan bırakılamaz!";
+        alertDiv.classList.add("d-none");
         event.preventDefault();
-
+        const alertDiv = document.getElementById("required-alert");
         const firstName = document.getElementById("firstName").value;
         const lastName = document.getElementById("lastName").value;
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
         const confirmPassword =
           document.getElementById("confirm-password").value;
-
         if (password !== confirmPassword) {
           alert("Passwords do not match.");
+          return;
+        }
+        if(!firstName || !lastName || !email || !password || !confirmPassword){
+          alertDiv.classList.remove("d-none");
           return;
         }
 
@@ -124,16 +135,19 @@
           email,
           password,
         };
-       
+
         axios
           .post(`https://localhost:7202/api/authentication/sign_up`, userData)
           .then(function (response) {
             alert("Kaydetme İşlemi Başarılı!");
-            window.location.href ="/login.html";
+            window.location.href = "/login.html";
           })
           .catch(function (error) {
-            // handle error
-            alert("Post İşlemi Hatalı");
+            if(error.response.data == "already_exists"){
+              alertDiv.innerHTML = "Bu email adresine sahip başka bir kullanıcı mevcut!";
+              alertDiv.classList.remove("d-none");
+              document.getElementById("email").value = "";
+            }
           })
           .finally(function () {
             // always executed
@@ -144,7 +158,6 @@
         const emailInput = document.getElementById("email");
         const validationMessage = document.getElementById("validation-message");
         const email = emailInput.value.trim();
-
         // Check if email is valid
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {

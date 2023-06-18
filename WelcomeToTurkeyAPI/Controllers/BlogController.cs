@@ -10,7 +10,7 @@ namespace WelcomeToTurkeyAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+
     public class BlogController : ControllerBase
     {
         private readonly WTTDbContext dbContext;
@@ -26,7 +26,13 @@ namespace WelcomeToTurkeyAPI.Controllers
         [HttpPost("add-comment")]
         public IActionResult AddNewComment([FromBody] AddNewCommentDto dto)
         {
-            var entity = new Comment() { Message = dto.Message, UserId = dto.UserId, BlogId = dto.BlogId, CommentDate = DateTime.Now };
+            var entity = new Comment()
+            {
+                Message = dto.Message,
+                UserId = dto.UserId,
+                BlogId = dto.BlogId,
+                CommentDate = DateTime.Now
+            };
             dbContext.Comments.Add(entity);
             var result = dbContext.SaveChanges();
             if (result > 0)
@@ -45,7 +51,7 @@ namespace WelcomeToTurkeyAPI.Controllers
         {
             var comments = dbContext.Comments.Where(x => x.BlogId == blogId).Select(x => new ListAllCommentDto
             {
-                CommentDate = x.CommentDate,
+                CommentDate = x.CommentDate.ToString("dd MMM yyyy HH:mm"),
                 CommentId = x.Id,
                 FullName = $"{x.User.FirstName} {x.User.LastName}",
                 Message = x.Message,
@@ -68,13 +74,59 @@ namespace WelcomeToTurkeyAPI.Controllers
                 Category = b.Category.CategoryName,
                 Photo = b.Photo != null ? Convert.ToBase64String(b.Photo) : null
             }).ToList();
-            if(blogs is not null)
+            if (blogs is not null)
             {
                 return Ok(blogs);
             }
             return BadRequest();
 
         }
+        [HttpGet("get-blogs-by-categoryid/{categoryId}")]
+        [AllowAnonymous]
+        public IActionResult ListAllBlogsByCategory([FromRoute] int categoryId)
+        {
+            var blogs = dbContext.Blogs.Where(b => b.IsPublished == true && b.CategoryId == categoryId).Select(b => new ListAllDetailedBlogsDto
+            {
+                BlogId = b.Id,
+                Title = b.Title,
+                PublishDate = b.PublishDate.ToShortDateString(),
+                Category = b.Category.CategoryName,
+                Photo = b.Photo != null ? Convert.ToBase64String(b.Photo) : null,
+                Summary = b.Content.Substring(0, 200) + "..."
+            }).ToList();
+            if (blogs is not null)
+            {
+                return Ok(blogs);
+            }
+            return BadRequest();
+
+        }
+
+        /* UPDATE PROCESS */
+
+        //TODO: update-comment-by-Id
+
+        [HttpPut("update-comment")]
+        public IActionResult UpdateComment([FromBody] UpdateCommentDto comment)
+        {
+            var currentComment = dbContext.Comments.SingleOrDefault(x => x.Id == comment.CommentId);
+            if (currentComment != null)
+            {
+                currentComment.Message = comment.Message;
+                currentComment.CommentDate = DateTime.Now;
+                var result = dbContext.SaveChanges();
+                if (result > 0)
+                {
+                    return Ok("Güncelleme Başarılı...");
+                }
+                return BadRequest();
+            }
+            return Ok("Yorum Bulunamadı!!!");
+        }
+
+        /* DELETE PROCESS */
+
+        //TODO: delete-comment-by-Id
         [HttpDelete("delete-comment/{commentId}")]
         public IActionResult DeleteCommentById([FromRoute] int commentId)
         {

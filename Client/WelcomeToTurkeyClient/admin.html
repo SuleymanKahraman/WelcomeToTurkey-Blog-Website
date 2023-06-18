@@ -19,7 +19,6 @@
 
     <!-- Vendor CSS Files -->
     <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet"/>
-    
     <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
     <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
     <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
@@ -298,7 +297,7 @@
       <a href="#" onclick="openPanel('category-panel')"
         ><i class="fa-solid fa-list"></i> Categories</a
       >
-      <a href="/index.html">
+      <a href="index.html">
         <i class="fa-solid fa-right-to-bracket fa-beat"></i> Website
       </a>
     </div>
@@ -306,9 +305,21 @@
     <!-- The Main -->
     <div class="main" id="main">
       <div id="home-panel" class="panel">
-        <h2 class="panel-title">Home Panel</h2>
-        <p>Çeşitli Kartlar</p>
-        <p>Kaç post kaç entry</p>
+        <div class="card" style="margin-top: 25px;">
+          <div class="card-header">
+            Informations
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">How many blogs have been published? </h5>
+            <p class="card-text"><b id="countOfBlogs"></b> blogs have been published until now.</p>
+            <a href="#" class="btn btn-primary" onclick="openPanel('blog-panel')">Blogs</a>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">How many users have been registered? </h5>
+            <p class="card-text"><b id="countOfUsers" ></b> users have been registered until now.</p>
+            <a href="#" class="btn btn-primary" onclick="openPanel('user-panel')" >Users</a>
+          </div>
+        </div>
       </div>
       <div id="user-panel" class="panel">
         <h2 class="panel-title">User Panel</h2>
@@ -355,7 +366,7 @@
         <div>
           <label for="category">Category: </label>
           <select id="category-for-filter" onchange="listBlogFilter(event)">
-            <option value="">Choosing...</option>
+            <option value="all">All</option>
           </select>
         </div>
         <br />
@@ -439,7 +450,7 @@
       };
       ListBlogs();
       ListOfCategories();
-
+      ListOfUsers(1);
       /* LIST PROCESS */
 
       // List Of Users
@@ -454,9 +465,11 @@
         axios
           .post(`https://localhost:7202/api/Admin/list-all-users`, filterData)
           .then((response) => {
-            
             let i = 0;
-            response.data.forEach((user) => {
+            var users = [];
+            users = response.data;
+            document.getElementById('countOfUsers').innerHTML = users.length; 
+            users.forEach((user) => {
               var tr = ``;
               tr += ` <tr>
                 <th scope="row">${++i}</th>
@@ -528,6 +541,8 @@
           .then((response) => {
             var blogs = [];
             blogs = response.data;
+            document.getElementById('countOfBlogs').innerHTML = blogs.length; 
+            table.innerHTML = " ";
             blogs.forEach((element) => {
               var tr = ``;
               tr += `<tr>`;
@@ -549,7 +564,10 @@
                   </a>
                 </td>`;
               table.innerHTML += tr;
+              
             });
+
+            
           })
           .catch((error) => {
             console.log(error);
@@ -561,6 +579,10 @@
 
       function listBlogFilter(event) {
         let categoryId = event.target.value;
+        if(categoryId == "all"){
+          ListBlogs();
+          return;
+        }
         let i = 0;
         axios
           .post(
@@ -733,15 +755,19 @@
       function openNavBar() {
         const sidebar = document.getElementById("sidebar");
         const main = document.getElementById("main");
+        const openedElement = document.getElementsByClassName("open");
 
         if (sidebar.style.width === "250px") {
           // Close Side Bar
           sidebar.style.width = "0px";
           main.style.marginLeft = "0px";
+          openedElement[0].style.left = "10px";
         } else {
           // Open Side Bar
           sidebar.style.width = "250px";
           main.style.marginLeft = "250px";
+          openedElement[0].style.left = "260px";
+
         }
       }
 

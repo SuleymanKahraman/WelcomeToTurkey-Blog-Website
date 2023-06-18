@@ -34,6 +34,7 @@ body {
   margin-left: 250px;
   padding: 20px;
   transition: 0.5s;
+  overflow: auto;
 }
 
 .header {
@@ -62,18 +63,21 @@ body {
 }
 
 .panel {
-  position: fixed;
+  opacity: 0;
+  position: absolute;
   top: 50px;
-  width: 75%;
-  bottom: 0;
-  height: 0;
-  padding: 20px;
-  overflow: hidden;
+  right: 10px;
+  left: 260px;
+  transition: all 0.5s;
 }
 
 .panel.open{
-  height: 100%;
-  transition: height 0.8s;
+  position: absolute;
+  top: 50px;
+  right: 10px;
+  left: 260px;
+  opacity: 1;
+  transition: all 0.5s;
 }
 
 .panel-title {
