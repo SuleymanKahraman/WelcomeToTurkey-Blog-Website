@@ -1,949 +1,304 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-    <title>ZenBlog Bootstrap Template - Single Post</title>
-    <meta content="" name="description" />
-    <meta content="" name="keywords" />
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-    <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon" />
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+  <title>ZenBlog Bootstrap Template - Single Post</title>
+  <meta content="" name="description" />
+  <meta content="" name="keywords" />
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Inter:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-      rel="stylesheet"
-    />
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon" />
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
 
-    <!-- Vendor CSS Files -->
-    <link
-      href="assets/vendor/bootstrap/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
-      rel="stylesheet"
-    />
-    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
-    <link
-      href="assets/vendor/glightbox/css/glightbox.min.css"
-      rel="stylesheet"
-    />
-    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Inter:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet" />
 
-    <!-- Template Main CSS Files -->
-    <link href="assets/css/variables.css" rel="stylesheet" />
-    <link href="assets/css/main.css" rel="stylesheet" />
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
 
-    <!-- Bootstrap.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js"></script>
-  </head>
+  <!-- Template Main CSS Files -->
+  <link href="assets/css/variables.css" rel="stylesheet" />
+  <link href="assets/css/main.css" rel="stylesheet" />
 
-  <body>
-    <!-- Modal-Update-Category-->
-    <div
-      class="modal fade"
-      id="modal-update-comment"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">
-              Updating Comment
-            </h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <form class="form-group" action="single-post.html" method="post">
-              <div>
-                <label for="category">Comment: </label>
-              </div>
-              <div>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="update-comment"
-                  placeholder="Enter New Category"
-                  style="margin-top: 1%"
-                />
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Cancel
-            </button>
-            <button type="submit" class="btn btn-danger" id="confirm-button">
-              Update
-            </button>
-          </div>
+  <!-- Bootstrap.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <!-- Modal-Update-Category-->
+  <div class="modal fade" id="modal-update-comment" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">
+            Updating Comment
+          </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form class="form-group" action="single-post.html" method="post">
+            <div>
+              <label for="category">Comment: </label>
+            </div>
+            <div>
+              <input type="text" class="form-control" id="update-comment" placeholder="Enter New Category"
+                style="margin-top: 1%" />
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Cancel
+          </button>
+          <button type="submit" class="btn btn-danger" id="confirm-button">
+            Update
+          </button>
         </div>
       </div>
     </div>
-    <!-- ======= Header ======= -->
-    <header id="header" class="header d-flex align-items-center fixed-top">
-      <div
-        class="container-fluid container-xl d-flex align-items-center justify-content-between"
-      >
-        <a href="index.html" class="logo d-flex align-items-center">
-          <!-- Uncomment the line below if you also wish to use an image logo -->
-          <!-- <img src="assets/img/logo.png" alt=""> -->
-          <h1>WelcomeTOTurkey</h1>
-        </a>
-
+  </div>
+  <!-- ======= Header ======= -->
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <h1>WelcomeTOTurkey</h1>
+      </a>
+      <div class="position-relative">
         <nav id="navbar" class="navbar">
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <!-- <li><a href="single-post.html">Single Post</a></li> -->
-            <li class="dropdown">
-              <a href="category.html"
-                ><span>Categories</span>
-                <i class="bi bi-chevron-down dropdown-indicator"></i
-              ></a>
-              <ul>
-                <!-- <li><a href="search-result.html">Search Result</a></li> -->
-                <li><a href="#">Culture</a></li>
-                <!-- <li class="dropdown">
-                <a href="#"
-                  ><span>Deep Drop Down</span>
-                  <i class="bi bi-chevron-down dropdown-indicator"></i
-                ></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li> -->
-                <li><a href="#">Entertainment </a></li>
-                <li><a href="#">History</a></li>
-                <li><a href="#">Politics</a></li>
-                <li><a href="#">Science</a></li>
-                <li><a href="#">Relationship</a></li>
-                <li><a href="#">Travel</a></li>
-              </ul>
-            </li>
+          <ul id="category-list">
 
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
           </ul>
         </nav>
-        <!-- .navbar -->
-
-        <div class="position-relative">
-          <a href="#" class="mx-2"><span class="bi-facebook"></span></a>
-          <a href="#" class="mx-2"><span class="bi-twitter"></span></a>
-          <a href="#" class="mx-2"><span class="bi-instagram"></span></a>
-          <a href="#" class="mx-2 js-search-open"
-            ><span class="bi-search"></span
-          ></a>
-          <i class="bi bi-list mobile-nav-toggle"></i>
-          <a href="login.html" class="mx-2"
-            ><span class="bi bi-person-circle"></span
-          ></a>
-          <div class="dropdown">
-            <div id="logout" style="display: none">
-              <button class="dropbtn btn-sm">
-                <span id="fName">Nobody</span>
-              </button>
-              <div class="dropdown-content">
-                <button onclick="Logout()">Logout</button>
-              </div>
+      </div>
+      <div class="d-flex align-items-center mx-3">
+        <a href="#" class="mx-2"><span class="bi bi-facebook"></span></a>
+        <a href="#" class="mx-2"><span class="bi bi-twitter"></span></a>
+        <a href="#" class="mx-2"><span class="bi bi-instagram"></span></a>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+        <a href="login.html" class="mx-2" id="login-button"><span class="bi bi-door-open"></span></a>
+        <a href="#" class="dropdown">
+          <div id="login" style="display: none">
+            <button class="dropdown button"><span id="fName">sdada</span></button>
+            <div class="dropdown-content">
+              <button onclick="logout()">Logout</button>
             </div>
           </div>
-
-          <!-- ======= Search Form ======= -->
-          <div class="search-form-wrap js-search-form-wrap">
-            <form action="search-result.html" class="search-form">
-              <span class="icon bi-search"></span>
-              <input type="text" placeholder="Search" class="form-control" />
-              <button class="btn js-search-close">
-                <span class="bi-x"></span>
-              </button>
-            </form>
-          </div>
-          <!-- End Search Form -->
-        </div>
+        </a>
+        <a href="/admin.html" style="display: none;" id="adminPageButton">
+          <i class="fa-solid fa-right-to-bracket fa-beat"></i></a>
       </div>
-    </header>
-    <!-- End Header -->
 
-    <main id="main">
-      <section class="single-post-content">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-9 post-content" data-aos="fade-up">
-              <!-- ======= Single Post Content ======= -->
+    </div>
+
+  </header>
+  <!-- End Header -->
+
+  <main id="main">
+    <section class="single-post-content" style="margin-left: 20%;">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-9 post-content" data-aos="fade-up">
+            <!-- ======= Single Post Content ======= -->
+            <form class="form-group" action="single-post.html">
               <div class="single-post">
                 <div class="post-meta">
-                  <span class="date">Business</span>
-                  <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span>
+                  <span class="date" id="category">Business</span>
+                  <span class="mx-1">&bullet;</span>
+                  <span id="publishDate">Jul 5th '22</span>
                 </div>
-                <h1 class="mb-5"></h1>
-                <figure class="my-4">
-                  <img src="assets\img\noimage.png" alt="" class="img-fluid" />
-                </figure>
-                <p>
-                  <span class="firstcharacter">L</span>orem ipsum dolor sit,
-                  amet consectetur adipisicing elit. Ratione officia sed,
-                  suscipit distinctio, numquam omnis quo fuga ipsam quis
-                  inventore voluptatum recusandae culpa, unde doloribus saepe
-                  labore alias voluptate expedita? Dicta delectus beatae
-                  explicabo odio voluptatibus quas, saepe qui aperiam autem
-                  obcaecati, illo et! Incidunt voluptas culpa neque repellat
-                  sint, accusamus beatae, cumque autem tempore quisquam quam
-                  eligendi harum debitis.
+                <h1 class="mb-5" id="title"></h1>
+                <img style="padding: 10px;" src="assets\img\noimage.png" id="photo" height="300" width="550" />
+                <p id="blogContent" style="text-indent: 2.5rem;">
+
+
                 </p>
               </div>
-              <!-- End Single Post Content -->
+            </form>
+            <!-- End Single Post Content -->
 
-              <!-- ======= Comments ======= -->
-              <div class="comments">
-                <h5 id="comment-count" class="comment-title py-4">
-                  Yorum Sayısı
-                </h5>
-                <div id="comment-list"></div>
-              </div>
-              <!-- End Comments -->
-
-              <!-- ======= Comments Form ======= -->
-              <div class="row justify-content-center mt-5 d-none" id="login-message">
-                <p>Yorum yapmak için lütfen <a href="/login.html" style="text-decoration: underline;">giriş yapınız</a></p>
-              </div>
-              <div class="row justify-content-center mt-5" id="post-comment-form">
-                <div class="col-lg-12">
-                  <h5 class="comment-title">Leave a Comment</h5>
-                  <div class="row">
-                    <div class="col-12 mb-3">
-                      <label for="comment-message">Message</label>
-
-                      <textarea
-                        class="form-control"
-                        id="comment-message"
-                        placeholder="Enter your message"
-                        cols="30"
-                        rows="10"
-                      ></textarea>
-                    </div>
-                    <div class="col-12">
-                      <input
-                        type="button"
-                        class="btn btn-primary"
-                        value="Post comment"
-                        onclick="SendComment()"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- End Comments Form -->
+            <!-- ======= Comments ======= -->
+            <div class="comments">
+              <h5 id="comment-count" class="comment-title py-4">
+                Comment Count:
+              </h5>
+              <div id="comment-list"></div>
             </div>
-            <div class="col-md-3">
-              <!-- ======= Sidebar ======= -->
-              <div class="aside-block">
-                <ul
-                  class="nav nav-pills custom-tab-nav mb-4"
-                  id="pills-tab"
-                  role="tablist"
-                >
-                  <li class="nav-item" role="presentation">
-                    <button
-                      class="nav-link active"
-                      id="pills-popular-tab"
-                      data-bs-toggle="pill"
-                      data-bs-target="#pills-popular"
-                      type="button"
-                      role="tab"
-                      aria-controls="pills-popular"
-                      aria-selected="true"
-                    >
-                      Popular
-                    </button>
-                  </li>
-                  <li class="nav-item" role="presentation">
-                    <button
-                      class="nav-link"
-                      id="pills-trending-tab"
-                      data-bs-toggle="pill"
-                      data-bs-target="#pills-trending"
-                      type="button"
-                      role="tab"
-                      aria-controls="pills-trending"
-                      aria-selected="false"
-                    >
-                      Trending
-                    </button>
-                  </li>
-                  <li class="nav-item" role="presentation">
-                    <button
-                      class="nav-link"
-                      id="pills-latest-tab"
-                      data-bs-toggle="pill"
-                      data-bs-target="#pills-latest"
-                      type="button"
-                      role="tab"
-                      aria-controls="pills-latest"
-                      aria-selected="false"
-                    >
-                      Latest
-                    </button>
-                  </li>
-                </ul>
+            <!-- End Comments -->
 
-                <div class="tab-content" id="pills-tabContent">
-                  <!-- Popular -->
-                  <div
-                    class="tab-pane fade show active"
-                    id="pills-popular"
-                    role="tabpanel"
-                    aria-labelledby="pills-popular-tab"
-                  >
-                    <div class="post-entry-1 border-bottom">
-                      <div class="post-meta">
-                        <span class="date">Sport</span>
-                        <span class="mx-1">&bullet;</span>
-                        <span>Jul 5th '22</span>
-                      </div>
-                      <h2 class="mb-2">
-                        <a href="#"
-                          >How to Avoid Distraction and Stay Focused During
-                          Video Calls?</a
-                        >
-                      </h2>
-                      <span class="author mb-3 d-block">Jenny Wilson</span>
-                    </div>
-
-                    <div class="post-entry-1 border-bottom">
-                      <div class="post-meta">
-                        <span class="date">Lifestyle</span>
-                        <span class="mx-1">&bullet;</span>
-                        <span>Jul 5th '22</span>
-                      </div>
-                      <h2 class="mb-2">
-                        <a href="#"
-                          >17 Pictures of Medium Length Hair in Layers That Will
-                          Inspire Your New Haircut</a
-                        >
-                      </h2>
-                      <span class="author mb-3 d-block">Jenny Wilson</span>
-                    </div>
-
-                    <div class="post-entry-1 border-bottom">
-                      <div class="post-meta">
-                        <span class="date">Culture</span>
-                        <span class="mx-1">&bullet;</span>
-                        <span>Jul 5th '22</span>
-                      </div>
-                      <h2 class="mb-2">
-                        <a href="#"
-                          >9 Half-up/half-down Hairstyles for Long and Medium
-                          Hair</a
-                        >
-                      </h2>
-                      <span class="author mb-3 d-block">Jenny Wilson</span>
-                    </div>
-
-                    <div class="post-entry-1 border-bottom">
-                      <div class="post-meta">
-                        <span class="date">Lifestyle</span>
-                        <span class="mx-1">&bullet;</span>
-                        <span>Jul 5th '22</span>
-                      </div>
-                      <h2 class="mb-2">
-                        <a href="#"
-                          >Life Insurance And Pregnancy: A Working Mom’s
-                          Guide</a
-                        >
-                      </h2>
-                      <span class="author mb-3 d-block">Jenny Wilson</span>
-                    </div>
-
-                    <div class="post-entry-1 border-bottom">
-                      <div class="post-meta">
-                        <span class="date">Business</span>
-                        <span class="mx-1">&bullet;</span>
-                        <span>Jul 5th '22</span>
-                      </div>
-                      <h2 class="mb-2">
-                        <a href="#"
-                          >The Best Homemade Masks for Face (keep the Pimples
-                          Away)</a
-                        >
-                      </h2>
-                      <span class="author mb-3 d-block">Jenny Wilson</span>
-                    </div>
-
-                    <div class="post-entry-1 border-bottom">
-                      <div class="post-meta">
-                        <span class="date">Lifestyle</span>
-                        <span class="mx-1">&bullet;</span>
-                        <span>Jul 5th '22</span>
-                      </div>
-                      <h2 class="mb-2">
-                        <a href="#"
-                          >10 Life-Changing Hacks Every Working Mom Should
-                          Know</a
-                        >
-                      </h2>
-                      <span class="author mb-3 d-block">Jenny Wilson</span>
-                    </div>
-                  </div>
-                  <!-- End Popular -->
-
-                  <!-- Trending -->
-                  <div
-                    class="tab-pane fade"
-                    id="pills-trending"
-                    role="tabpanel"
-                    aria-labelledby="pills-trending-tab"
-                  >
-                    <div class="post-entry-1 border-bottom">
-                      <div class="post-meta">
-                        <span class="date">Lifestyle</span>
-                        <span class="mx-1">&bullet;</span>
-                        <span>Jul 5th '22</span>
-                      </div>
-                      <h2 class="mb-2">
-                        <a href="#"
-                          >17 Pictures of Medium Length Hair in Layers That Will
-                          Inspire Your New Haircut</a
-                        >
-                      </h2>
-                      <span class="author mb-3 d-block">Jenny Wilson</span>
-                    </div>
-
-                    <div class="post-entry-1 border-bottom">
-                      <div class="post-meta">
-                        <span class="date">Culture</span>
-                        <span class="mx-1">&bullet;</span>
-                        <span>Jul 5th '22</span>
-                      </div>
-                      <h2 class="mb-2">
-                        <a href="#"
-                          >9 Half-up/half-down Hairstyles for Long and Medium
-                          Hair</a
-                        >
-                      </h2>
-                      <span class="author mb-3 d-block">Jenny Wilson</span>
-                    </div>
-
-                    <div class="post-entry-1 border-bottom">
-                      <div class="post-meta">
-                        <span class="date">Lifestyle</span>
-                        <span class="mx-1">&bullet;</span>
-                        <span>Jul 5th '22</span>
-                      </div>
-                      <h2 class="mb-2">
-                        <a href="#"
-                          >Life Insurance And Pregnancy: A Working Mom’s
-                          Guide</a
-                        >
-                      </h2>
-                      <span class="author mb-3 d-block">Jenny Wilson</span>
-                    </div>
-
-                    <div class="post-entry-1 border-bottom">
-                      <div class="post-meta">
-                        <span class="date">Sport</span>
-                        <span class="mx-1">&bullet;</span>
-                        <span>Jul 5th '22</span>
-                      </div>
-                      <h2 class="mb-2">
-                        <a href="#"
-                          >How to Avoid Distraction and Stay Focused During
-                          Video Calls?</a
-                        >
-                      </h2>
-                      <span class="author mb-3 d-block">Jenny Wilson</span>
-                    </div>
-                    <div class="post-entry-1 border-bottom">
-                      <div class="post-meta">
-                        <span class="date">Business</span>
-                        <span class="mx-1">&bullet;</span>
-                        <span>Jul 5th '22</span>
-                      </div>
-                      <h2 class="mb-2">
-                        <a href="#"
-                          >The Best Homemade Masks for Face (keep the Pimples
-                          Away)</a
-                        >
-                      </h2>
-                      <span class="author mb-3 d-block">Jenny Wilson</span>
-                    </div>
-
-                    <div class="post-entry-1 border-bottom">
-                      <div class="post-meta">
-                        <span class="date">Lifestyle</span>
-                        <span class="mx-1">&bullet;</span>
-                        <span>Jul 5th '22</span>
-                      </div>
-                      <h2 class="mb-2">
-                        <a href="#"
-                          >10 Life-Changing Hacks Every Working Mom Should
-                          Know</a
-                        >
-                      </h2>
-                      <span class="author mb-3 d-block">Jenny Wilson</span>
-                    </div>
-                  </div>
-                  <!-- End Trending -->
-
-                  <!-- Latest -->
-                  <div
-                    class="tab-pane fade"
-                    id="pills-latest"
-                    role="tabpanel"
-                    aria-labelledby="pills-latest-tab"
-                  >
-                    <div class="post-entry-1 border-bottom">
-                      <div class="post-meta">
-                        <span class="date">Lifestyle</span>
-                        <span class="mx-1">&bullet;</span>
-                        <span>Jul 5th '22</span>
-                      </div>
-                      <h2 class="mb-2">
-                        <a href="#"
-                          >Life Insurance And Pregnancy: A Working Mom’s
-                          Guide</a
-                        >
-                      </h2>
-                      <span class="author mb-3 d-block">Jenny Wilson</span>
-                    </div>
-
-                    <div class="post-entry-1 border-bottom">
-                      <div class="post-meta">
-                        <span class="date">Business</span>
-                        <span class="mx-1">&bullet;</span>
-                        <span>Jul 5th '22</span>
-                      </div>
-                      <h2 class="mb-2">
-                        <a href="#"
-                          >The Best Homemade Masks for Face (keep the Pimples
-                          Away)</a
-                        >
-                      </h2>
-                      <span class="author mb-3 d-block">Jenny Wilson</span>
-                    </div>
-
-                    <div class="post-entry-1 border-bottom">
-                      <div class="post-meta">
-                        <span class="date">Lifestyle</span>
-                        <span class="mx-1">&bullet;</span>
-                        <span>Jul 5th '22</span>
-                      </div>
-                      <h2 class="mb-2">
-                        <a href="#"
-                          >10 Life-Changing Hacks Every Working Mom Should
-                          Know</a
-                        >
-                      </h2>
-                      <span class="author mb-3 d-block">Jenny Wilson</span>
-                    </div>
-
-                    <div class="post-entry-1 border-bottom">
-                      <div class="post-meta">
-                        <span class="date">Sport</span>
-                        <span class="mx-1">&bullet;</span>
-                        <span>Jul 5th '22</span>
-                      </div>
-                      <h2 class="mb-2">
-                        <a href="#"
-                          >How to Avoid Distraction and Stay Focused During
-                          Video Calls?</a
-                        >
-                      </h2>
-                      <span class="author mb-3 d-block">Jenny Wilson</span>
-                    </div>
-
-                    <div class="post-entry-1 border-bottom">
-                      <div class="post-meta">
-                        <span class="date">Lifestyle</span>
-                        <span class="mx-1">&bullet;</span>
-                        <span>Jul 5th '22</span>
-                      </div>
-                      <h2 class="mb-2">
-                        <a href="#"
-                          >17 Pictures of Medium Length Hair in Layers That Will
-                          Inspire Your New Haircut</a
-                        >
-                      </h2>
-                      <span class="author mb-3 d-block">Jenny Wilson</span>
-                    </div>
-
-                    <div class="post-entry-1 border-bottom">
-                      <div class="post-meta">
-                        <span class="date">Culture</span>
-                        <span class="mx-1">&bullet;</span>
-                        <span>Jul 5th '22</span>
-                      </div>
-                      <h2 class="mb-2">
-                        <a href="#"
-                          >9 Half-up/half-down Hairstyles for Long and Medium
-                          Hair</a
-                        >
-                      </h2>
-                      <span class="author mb-3 d-block">Jenny Wilson</span>
-                    </div>
-                  </div>
-                  <!-- End Latest -->
-                </div>
-              </div>
-
-              <div class="aside-block">
-                <h3 class="aside-title">Video</h3>
-                <div class="video-post">
-                  <a
-                    href="https://www.youtube.com/watch?v=AiFfDjmd0jU"
-                    class="glightbox link-video"
-                  >
-                    <span class="bi-play-fill"></span>
-                    <img
-                      src="assets\img\noimage.png"
-                      alt=""
-                      class="img-fluid"
-                    />
-                  </a>
-                </div>
-              </div>
-              <!-- End Video -->
-
-              <div class="aside-block">
-                <h3 class="aside-title">Categories</h3>
-                <ul class="aside-links list-unstyled">
-                  <li>
-                    <a href="category.html"
-                      ><i class="bi bi-chevron-right"></i> Business</a
-                    >
-                  </li>
-                  <li>
-                    <a href="category.html"
-                      ><i class="bi bi-chevron-right"></i> Culture</a
-                    >
-                  </li>
-                  <li>
-                    <a href="category.html"
-                      ><i class="bi bi-chevron-right"></i> Sport</a
-                    >
-                  </li>
-                  <li>
-                    <a href="category.html"
-                      ><i class="bi bi-chevron-right"></i> Food</a
-                    >
-                  </li>
-                  <li>
-                    <a href="category.html"
-                      ><i class="bi bi-chevron-right"></i> Politics</a
-                    >
-                  </li>
-                  <li>
-                    <a href="category.html"
-                      ><i class="bi bi-chevron-right"></i> Celebrity</a
-                    >
-                  </li>
-                  <li>
-                    <a href="category.html"
-                      ><i class="bi bi-chevron-right"></i> Startups</a
-                    >
-                  </li>
-                  <li>
-                    <a href="category.html"
-                      ><i class="bi bi-chevron-right"></i> Travel</a
-                    >
-                  </li>
-                </ul>
-              </div>
-              <!-- End Categories -->
-
-              <div class="aside-block">
-                <h3 class="aside-title">Tags</h3>
-                <ul class="aside-tags list-unstyled">
-                  <li><a href="category.html">Business</a></li>
-                  <li><a href="category.html">Culture</a></li>
-                  <li><a href="category.html">Sport</a></li>
-                  <li><a href="category.html">Food</a></li>
-                  <li><a href="category.html">Politics</a></li>
-                  <li><a href="category.html">Celebrity</a></li>
-                  <li><a href="category.html">Startups</a></li>
-                  <li><a href="category.html">Travel</a></li>
-                </ul>
-              </div>
-              <!-- End Tags -->
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-    <!-- End #main -->
-
-    <!-- ======= Footer ======= -->
-    <footer id="footer" class="footer">
-      <div class="footer-content">
-        <div class="container">
-          <div class="row g-5">
-            <div class="col-lg-4">
-              <h3 class="footer-heading">About WelcomeTOTurkey</h3>
+            <!-- ======= Comments Form ======= -->
+            <div class="row justify-content-center mt-3 d-none" id="login-message">
               <p>
-                "Merhaba! Welcome to our website that provides insights into
-                living in Turkey. Our website is designed to cater to people who
-                are thinking of living in Turkey or already live here. We offer
-                a range of articles covering topics such as culture, history,
-                cuisine, and daily life in Turkey. Our aim is to provide a
-                comprehensive resource for anyone looking to gain a deeper
-                understanding of Turkish society and the unique aspects of
-                living in this beautiful country. Join us on this journey to
-                explore Turkey and discover everything it has to offer!"
-              </p>
-              <p>
-                <a href="about.html" class="footer-link-more">Learn More</a>
+                Yorum yapmak için lütfen
+                <a href="/login.html" style="text-decoration: underline">giriş yapınız</a>
               </p>
             </div>
-            <div class="col-6 col-lg-2">
-              <h3 class="footer-heading">Navigation</h3>
-              <ul class="footer-links list-unstyled">
-                <li>
-                  <a href="index.html"
-                    ><i class="bi bi-chevron-right"></i> Home</a
-                  >
-                </li>
-                <!-- <li>
-                  <a href="index.html"
-                    ><i class="bi bi-chevron-right"></i> Blog</a
-                  >
-                </li> -->
-                <li>
-                  <a href="category.html"
-                    ><i class="bi bi-chevron-right"></i> Categories</a
-                  >
-                </li>
+            <div class="row justify-content-center mt-5" id="post-comment-form">
+              <div class="col-lg-12">
+                <h5 class="comment-title">Leave a Comment</h5>
+                <div class="row">
+                  <div class="col-12 mb-3">
+                    <label for="comment-message">Message</label>
 
-                <!-- <li>
-                  <a href="single-post.html"
-                    ><i class="bi bi-chevron-right"></i> Single Post</a
-                  >
-                </li> -->
-                <li>
-                  <a href="about.html"
-                    ><i class="bi bi-chevron-right"></i> About us</a
-                  >
-                </li>
-                <li>
-                  <a href="contact.html"
-                    ><i class="bi bi-chevron-right"></i> Contact</a
-                  >
-                </li>
-              </ul>
+                    <textarea class="form-control" id="comment-message" placeholder="Enter your message" cols="30"
+                      rows="10"></textarea>
+                  </div>
+                  <div class="col-12">
+                    <input type="button" class="btn btn-primary" value="Post comment" onclick="SendComment()" />
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="col-6 col-lg-2">
-              <h3 class="footer-heading">Categories</h3>
-              <ul class="footer-links list-unstyled">
-                <li>
-                  <a href="category.html"
-                    ><i class="bi bi-chevron-right"></i> Entertainment</a
-                  >
-                </li>
-                <li>
-                  <a href="category.html"
-                    ><i class="bi bi-chevron-right"></i> History</a
-                  >
-                </li>
-                <li>
-                  <a href="category.html"
-                    ><i class="bi bi-chevron-right"></i> Politics</a
-                  >
-                </li>
-                <li>
-                  <a href="category.html"
-                    ><i class="bi bi-chevron-right"></i> Science</a
-                  >
-                </li>
-                <li>
-                  <a href="category.html"
-                    ><i class="bi bi-chevron-right"></i> Relationship</a
-                  >
-                </li>
-                <li>
-                  <a href="category.html"
-                    ><i class="bi bi-chevron-right"></i> Travel</a
-                  >
-                </li>
-              </ul>
-            </div>
-
-            <div class="col-lg-4">
-              <h3 class="footer-heading">Recent Posts</h3>
-
-              <!-- <ul class="footer-links footer-blog-entry list-unstyled">
-                <li>
-                  <a href="single-post.html" class="d-flex align-items-center">
-                    <img
-                      src="assets/img/post-sq-1.jpg"
-                      alt=""
-                      class="img-fluid me-3"
-                    />
-                    <div>
-                      <div class="post-meta d-block">
-                        <span class="date">Culture</span>
-                        <span class="mx-1">&bullet;</span>
-                        <span>Jul 5th '22</span>
-                      </div>
-                      <span>5 Great Startup Tips for Female Founders</span>
-                    </div>
-                  </a>
-                </li>
-
-                <li>
-                  <a href="single-post.html" class="d-flex align-items-center">
-                    <img
-                      src="assets/img/post-sq-2.jpg"
-                      alt=""
-                      class="img-fluid me-3"
-                    />
-                    <div>
-                      <div class="post-meta d-block">
-                        <span class="date">Culture</span>
-                        <span class="mx-1">&bullet;</span>
-                        <span>Jul 5th '22</span>
-                      </div>
-                      <span
-                        >What is the son of Football Coach John Gruden, Deuce
-                        Gruden doing Now?</span
-                      >
-                    </div>
-                  </a>
-                </li>
-
-                <li>
-                  <a href="single-post.html" class="d-flex align-items-center">
-                    <img
-                      src="assets/img/post-sq-3.jpg"
-                      alt=""
-                      class="img-fluid me-3"
-                    />
-                    <div>
-                      <div class="post-meta d-block">
-                        <span class="date">Culture</span>
-                        <span class="mx-1">&bullet;</span>
-                        <span>Jul 5th '22</span>
-                      </div>
-                      <span
-                        >Life Insurance And Pregnancy: A Working Mom’s
-                        Guide</span
-                      >
-                    </div>
-                  </a>
-                </li>
-
-                <li>
-                  <a href="single-post.html" class="d-flex align-items-center">
-                    <img
-                      src="assets/img/post-sq-4.jpg"
-                      alt=""
-                      class="img-fluid me-3"
-                    />
-                    <div>
-                      <div class="post-meta d-block">
-                        <span class="date">Culture</span>
-                        <span class="mx-1">&bullet;</span>
-                        <span>Jul 5th '22</span>
-                      </div>
-                      <span
-                        >How to Avoid Distraction and Stay Focused During Video
-                        Calls?</span
-                      >
-                    </div>
-                  </a>
-                </li>
-              </ul> -->
-            </div>
+            <!-- End Comments Form -->
           </div>
         </div>
       </div>
+    </section>
+  </main>
+  <!-- End #main -->
 
-      <div class="footer-legal">
-        <div class="container">
-          <div class="row justify-content-between">
-            <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-              <div class="copyright">
-                © Copyright <strong><span>WelcomeTOTurkey</span></strong
-                >. All Rights Reserved
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="footer-content">
+      <div class="container">
+        <div class="row g-5">
+          <div class="col-lg-4">
+            <h3 class="footer-heading">About WelcomeTOTurkey</h3>
+            <p>
+              "Merhaba! Welcome to our website that provides insights into
+              living in Turkey. Our website is designed to cater to people who
+              are thinking of living in Turkey or already live here. We offer
+              a range of articles covering topics such as culture, history,
+              cuisine, and daily life in Turkey. Our aim is to provide a
+              comprehensive resource for anyone looking to gain a deeper
+              understanding of Turkish society and the unique aspects of
+              living in this beautiful country. Join us on this journey to
+              explore Turkey and discover everything it has to offer!"
+            </p>
+          </div>
+          <div class="col-6 col-lg-2" style="margin-left: 100px;">
+            <h3 class="footer-heading">Navigation</h3>
+            <ul class="footer-links list-unstyled" id="category-list-footer">
+
+            </ul>
+          </div>
+          <div class="col-lg-4" style="margin-left: 80px;">
+            <h3 class="footer-heading">Contacts</h3>
+            <ul class="contact-info">
+              <li><i class="bi bi-envelope"></i> Email: contact@example.com</li>
+              <li><i class="bi bi-geo-alt"></i> Address: 1991 Sk. Bağlıca Mh., Ankara, TURKEY</li>
+              <li><i class="bi bi-telephone"></i> Phone: 0312 326 98 37</li>
+            </ul>
+            <div style="margin-left: 30%; margin-top: 20%;">
+              <a href="https://twitter.com/example"><i class="bi bi-twitter" style="color: white;"></i></a>
+              <a href="https://www.facebook.com/example"><i class="bi bi-facebook" style="color: white;"></i></a>
+              <a href="https://plus.google.com/example"><i class="bi bi-google" style="color: white;"></i></a>
+            </div>
+          </div>
+          <div class="footer-legal">
+            <div class="container">
+              <div class="row justify-content-between">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                  <div class="copyright">
+                    © Copyright <strong><span>WelcomeTOTurkey</span></strong>. All Rights Reserved
+                  </div>
+                </div>
+                <div class="col-md-6"></div>
               </div>
             </div>
-
-            <div class="col-md-6"></div>
           </div>
-        </div>
-      </div>
-    </footer>
+  </footer>
 
-    <!-- <a
-      href="#"
-      class="scroll-top d-flex align-items-center justify-content-center"
-      ><i class="bi bi-arrow-up-short"></i
-    ></a> -->
 
-    <!-- Vendor JS Files -->
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="assets/vendor/aos/aos.js"></script>
-    <script src="assets/vendor/php-email-form/validate.js"></script>
+  <!-- Vendor JS Files -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
 
-    <!-- Template Main JS File -->
-    <script src="assets/js/main.js"></script>
-    <script>
-      /* AUTH PROCESS */
-      let UId = window.localStorage.getItem("userId");
-      let firstName = window.localStorage.getItem("firstName");
-      let token = window.localStorage.getItem("token");
-      let logout = document.getElementById("logout");
-      if (firstName) {
-        logout.style.display = "block";
-        document.getElementById("fName").innerHTML = firstName;
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+  <script>
+    /* AUTH PROCESS */
+    var UId = window.localStorage.getItem("userId");
+    var firstName = window.localStorage.getItem("firstName");
+    var userType = window.localStorage.getItem('userType');
+    var adminPageButton = document.getElementById('adminPageButton');
+    var loginButton = document.getElementById("login-button");
+    if (userType === 'Admin') {
+      adminPageButton.style.display = 'block';
+    }
+    var login = document.getElementById("login");
+    if (firstName) {
+      login.style.display = "block";
+      document.getElementById("fName").innerHTML = firstName;
+      loginButton.style.display = "none";
+    } else {
+      login.style.display = "none";
+    }
+
+    /* Authorizing */
+    var token = window.localStorage.getItem("token");
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    const params = new Proxy(new URLSearchParams(window.location.search), {
+      get: (searchParams, prop) => searchParams.get(prop),
+    });
+    let blogId = params.blogid;
+
+    /* Listing */
+    loadCategories();
+    LoadComment();
+    LoadBlogDetail();
+    function LoadBlogDetail() {
+      axios
+        .get(`https://localhost:7202/api/admin/get-blog-by-Id/${blogId}`)
+        .then((response) => {
+          if (response) {
+            var blog = response.data;
+            document.getElementById('category').innerHTML = blog.category;
+            document.getElementById('title').innerHTML = blog.title;
+            document.getElementById('publishDate').innerHTML = blog.publishDate;
+            document.getElementById('blogContent').innerHTML = blog.content;
+            let photo = document.getElementById('photo');
+            photo.src = blog.photo != null ? "data:image/jpeg;base64," + blog.photo : photo.src;
+          }
+
+        });
+    }
+    function LoadComment() {
+      if (UId == null || UId == "") {
+        let commentDiv = document.getElementById("post-comment-form");
+        let loginMessageDiv = document.getElementById("login-message");
+        commentDiv.classList.add("d-none");
+        loginMessageDiv.classList.remove("d-none");
       }
+      axios
+        .get(`https://localhost:7202/api/blog/list-comment/${blogId}`)
+        .then((response) => {
+          if (response.data.length > 0) {
+            let element = document.getElementById("comment-count");
+            element.innerHTML += response.data.length;
 
-      /* Authorizing */
-      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      const params = new Proxy(new URLSearchParams(window.location.search), {
-        get: (searchParams, prop) => searchParams.get(prop),
-      });
-      let blogId = params.blogid;
-
-      /* Listing */
-      LoadComment();
-      function LoadComment() {
-        axios
-          .get(`https://localhost:7202/api/blog/list-comment/${blogId}`)
-          .then((response) => {
-            if (response.data.length > 0) {
-              let element = document.getElementById("comment-count");
-              element.innerHTML += response.data.length;
-
-              let comments = response.data;
-              let myId = window.localStorage.getItem("userId");
-              let listElement = document.getElementById("comment-list");
-              comments.forEach((comment) => {
-                let displayClass = myId != comment.userId ? "d-none" : "";
-                listElement.innerHTML += `<div class="comment d-flex mb-4">
+            let comments = response.data;
+            let listElement = document.getElementById("comment-list");
+            comments.forEach((comment) => {
+              let displayClass = UId != comment.userId ? "d-none" : "";
+              listElement.innerHTML += `<div class="comment d-flex mb-4">
                     <div class="flex-shrink-0">
                       <div class="avatar avatar-sm rounded-circle">
                         <img
@@ -968,86 +323,99 @@
 
                     </div>
                   </div>`;
-              });
+            });
 
-              if(myId == null || myId == ""){
-                let commentDiv = document.getElementById("post-comment-form");
-                let loginMessageDiv = document.getElementById("login-message");
-                commentDiv.classList.add("d-none");
-                loginMessageDiv.classList.remove("d-none");
-                
+
+          }
+        });
+    }
+
+    /* Sending comment */
+    function SendComment() {
+      let value = document.getElementById("comment-message").value;
+      let data = {
+        UserId: UId,
+        Message: value,
+        BlogId: blogId,
+      };
+      axios
+        .post("https://localhost:7202/api/blog/add-comment", data)
+        .then((response) => {
+          if (response) {
+            window.location.reload();
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+
+    /* Update Comment */
+
+    function UpdateComment(Id, message) {
+      let commentId = Id;
+      let commentInput = document.getElementById("update-comment");
+      commentInput.value = message;
+      let modal = document.getElementById("modal-update-comment");
+      let bootModal = new bootstrap.Modal(modal);
+      bootModal.show();
+
+      document
+        .getElementById("confirm-button")
+        .addEventListener("click", function () {
+          const newComment = {
+            message: commentInput.value,
+            commentId: commentId,
+          };
+          axios
+            .put(`https://localhost:7202/api/blog/update-comment`, newComment)
+            .then((response) => {
+              if (response) {
+                alert("The comment has just been updated...");
+                location.reload();
               }
-            }
+            });
+        });
+    }
 
+    /* Delete Comment By Id */
+    function DeleteComment(commentId) {
+      axios
+        .delete(`https://localhost:7202/api/blog/delete-comment/${commentId}`)
+        .then((response) => {
+          if (response) {
+            window.location.reload();
+          }
+        });
+    }
+
+    /* Logout */
+    function logout() {
+      window.localStorage.clear();
+      login.style.display = "none";
+      adminPageButton.style.display = "none";
+      window.location.reload();
+    }
+
+    function loadCategories() {
+      const listElement = document.getElementById("category-list");
+      const listForFooter = document.getElementById('category-list-footer');
+
+      axios
+        .get(`https://localhost:7202/api/admin/list-category-with-Id`)
+        .then((response) => {
+          categories = response.data;
+          categories.forEach((element) => {
+            listElement.innerHTML += `<li><a href="category.html?categoryId=${element.categoryId}">${element.categoryName}</a></li>`
+            listForFooter.innerHTML += `<li><a href="category.html?categoryId=${element.categoryId}">${element.categoryName}</a></li>`
           });
-      }
+        })
+        .catch((error) => {
+          console.log(error);
+          alert("Do Not Happen!!!");
+        });
+    }
+  </script>
+</body>
 
-      /* Sending comment */
-      function SendComment() {
-        let value = document.getElementById("comment-message").value;
-        let data = {
-          UserId: UId,
-          Message: value,
-          BlogId: blogId,
-        };
-        axios
-          .post("https://localhost:7202/api/blog/add-comment", data)
-          .then((response) => {
-            if (response) {
-              window.location.reload();
-            }
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      }
-
-      /* Update Comment */
-
-      function UpdateComment(Id, message) {
-        let commentId = Id;
-        let commentInput = document.getElementById("update-comment");
-        commentInput.value = message;
-        let modal = document.getElementById("modal-update-comment");
-        let bootModal = new bootstrap.Modal(modal);
-        bootModal.show();
-
-        document
-          .getElementById("confirm-button")
-          .addEventListener("click", function () {
-            const newComment = {
-              message: commentInput.value,
-              commentId: commentId,
-            };
-            console.log(newComment);
-            debugger;
-            axios
-              .put(`https://localhost:7202/api/blog/update-comment`, newComment)
-              .then((response) => {
-                if (response) {
-                  alert(response.data);
-                  location.reload();
-                }
-              });
-          });
-      }
-
-      /* Delete Comment By Id */
-      function DeleteComment(commentId) {
-        axios
-          .delete(`https://localhost:7202/api/blog/delete-comment/${commentId}`)
-          .then((response) => {
-            if (response) {
-              window.location.reload();
-            }
-          });
-      }
-
-      /* Logout */
-      function Logout() {
-        localStorage.clear();
-        logout.style.display = "none";
-      }
-    </script>
-  </body>
 </html>

@@ -10,7 +10,7 @@ namespace WelcomeToTurkeyAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-
+    
     public class BlogController : ControllerBase
     {
         private readonly WTTDbContext dbContext;
@@ -24,6 +24,7 @@ namespace WelcomeToTurkeyAPI.Controllers
 
         //TODO: add-comment
         [HttpPost("add-comment")]
+        [Authorize]
         public IActionResult AddNewComment([FromBody] AddNewCommentDto dto)
         {
             var entity = new Comment()
@@ -63,7 +64,6 @@ namespace WelcomeToTurkeyAPI.Controllers
         //TODO: list-blog
 
         [HttpGet("list-blog")]
-        [AllowAnonymous]
         public IActionResult ListAllBlogs()
         {
             var blogs = dbContext.Blogs.Where(b => b.IsPublished == true).Select(b => new ListAllBlogsDto
@@ -82,7 +82,6 @@ namespace WelcomeToTurkeyAPI.Controllers
 
         }
         [HttpGet("get-blogs-by-categoryid/{categoryId}")]
-        [AllowAnonymous]
         public IActionResult ListAllBlogsByCategory([FromRoute] int categoryId)
         {
             var blogs = dbContext.Blogs.Where(b => b.IsPublished == true && b.CategoryId == categoryId).Select(b => new ListAllDetailedBlogsDto
@@ -107,6 +106,7 @@ namespace WelcomeToTurkeyAPI.Controllers
         //TODO: update-comment-by-Id
 
         [HttpPut("update-comment")]
+        [Authorize]
         public IActionResult UpdateComment([FromBody] UpdateCommentDto comment)
         {
             var currentComment = dbContext.Comments.SingleOrDefault(x => x.Id == comment.CommentId);
@@ -128,6 +128,7 @@ namespace WelcomeToTurkeyAPI.Controllers
 
         //TODO: delete-comment-by-Id
         [HttpDelete("delete-comment/{commentId}")]
+        [Authorize]
         public IActionResult DeleteCommentById([FromRoute] int commentId)
         {
             var entity = dbContext.Comments.FirstOrDefault(x => x.Id == commentId);

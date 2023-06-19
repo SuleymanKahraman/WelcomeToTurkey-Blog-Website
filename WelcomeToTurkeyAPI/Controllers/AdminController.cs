@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WelcomeToTurkeyAPI.Data.Entities;
 using WelcomeToTurkeyAPI.Dtos.BlogDtos;
@@ -9,6 +10,7 @@ namespace WelcomeToTurkeyAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class AdminController : ControllerBase
     {
         private readonly WTTDbContext dbContext;
@@ -53,7 +55,7 @@ namespace WelcomeToTurkeyAPI.Controllers
         // List Of Categories
 
         [HttpGet("list-category-with-Id")]
-
+        [AllowAnonymous]
         public IActionResult ListCategory()
         {
             var categories = dbContext.Categories.Select(x => new OptionCategory
@@ -95,6 +97,7 @@ namespace WelcomeToTurkeyAPI.Controllers
         // List Of Blog By Id
 
         [HttpGet("get-blog-by-Id/{blogId}")]
+        [AllowAnonymous]
         public IActionResult GetBlogById([FromRoute] int blogId)
         {
             var blogById = dbContext.Blogs.Where(b => b.Id == blogId).Select(b => new GetBlogByIdDto

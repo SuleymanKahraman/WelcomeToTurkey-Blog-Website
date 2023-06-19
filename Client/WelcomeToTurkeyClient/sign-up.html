@@ -44,11 +44,16 @@
   <body>
     <div class="container">
       <div class="card">
-        <div class="card-header">
-          <h3 class="text-center mb-0">Sign Up</h3>
+        <div class="d-flex">
+          <a href="login.html" class="">
+            <i class="bi bi-door-open"></i> Login
+          </a>
+          <h3 class="mx-auto">Sign Up</h3>
         </div>
         <div class="card-body">
-          <div class="alert alert-danger d-none" id="required-alert">Boş alan bırakılamaz...</div>
+          <div class="alert alert-danger d-none" id="required-alert">
+            Fields can not be left blank!!!
+          </div>
           <form id="signup-form" action="sign-up.html">
             <div class="row mb-3">
               <div class="col">
@@ -110,7 +115,7 @@
 
       form.addEventListener("submit", function (event) {
         var alertDiv = document.getElementById("required-alert");
-        alertDiv.innerHTML = "Boş alan bırakılamaz!";
+        alertDiv.innerHTML = "Fields can not be left blank!!!";
         alertDiv.classList.add("d-none");
         event.preventDefault();
         const alertDiv = document.getElementById("required-alert");
@@ -124,7 +129,13 @@
           alert("Passwords do not match.");
           return;
         }
-        if(!firstName || !lastName || !email || !password || !confirmPassword){
+        if (
+          !firstName ||
+          !lastName ||
+          !email ||
+          !password ||
+          !confirmPassword
+        ) {
           alertDiv.classList.remove("d-none");
           return;
         }
@@ -139,12 +150,13 @@
         axios
           .post(`https://localhost:7202/api/authentication/sign_up`, userData)
           .then(function (response) {
-            alert("Kaydetme İşlemi Başarılı!");
+            alert("The user has just been saved successfully...");
             window.location.href = "/login.html";
           })
           .catch(function (error) {
-            if(error.response.data == "already_exists"){
-              alertDiv.innerHTML = "Bu email adresine sahip başka bir kullanıcı mevcut!";
+            if (error.response.data == "already_exists") {
+              alertDiv.innerHTML =
+                "The user owned this email has already exist!!!";
               alertDiv.classList.remove("d-none");
               document.getElementById("email").value = "";
             }

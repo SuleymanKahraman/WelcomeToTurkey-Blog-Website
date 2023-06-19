@@ -186,7 +186,7 @@
             <!-- ======= Comments ======= -->
             <div class="comments">
               <h5 id="comment-count" class="comment-title py-4">
-                Comment Count: 
+                Comment Count:
               </h5>
               <div id="comment-list">
 
@@ -307,6 +307,11 @@
   <script src="assets/js/main.js"></script>
 
   <script>
+
+    var admin = window.localStorage.getItem('userType');
+    if (admin === 'User') {
+      window.location.href = "/index.html";
+    }
     var photo;
     let blogId;
     let isPublished = false;
@@ -318,6 +323,9 @@
     } else {
       window.location.href = "/admin.html";
     }
+    /* Authorizing */
+    var token = window.localStorage.getItem("token");
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     LoadBlogDetail();
     ListOfCategories();
     function LoadBlogDetail() {
@@ -341,16 +349,16 @@
 
             var categorySelection = document.getElementById("newCategory");
             var options = Array.from(categorySelection.options);
-            var myoption = options.find(x=> x.label == blog.category);
+            var myoption = options.find(x => x.label == blog.category);
             myoption.selected = true;
           }
         });
-        loadComments();
+      loadComments();
     }
-    function loadComments(){
+    function loadComments() {
       axios
-        .get(`https://localhost:7202/api/blog/list-comment/${blogId}`).then((response)=>{
-          if(response.data){
+        .get(`https://localhost:7202/api/blog/list-comment/${blogId}`).then((response) => {
+          if (response.data) {
             var listElement = document.getElementById("comment-list");
             response.data.forEach(comment => {
               listElement.innerHTML += `<div class="comment d-flex mb-4">
@@ -385,14 +393,14 @@
         });
     }
     function DeleteComment(commentId) {
-        axios
-          .delete(`https://localhost:7202/api/blog/delete-comment/${commentId}`)
-          .then((response) => {
-            if (response) {
-              window.location.reload();
-            }
-          });
-      }
+      axios
+        .delete(`https://localhost:7202/api/blog/delete-comment/${commentId}`)
+        .then((response) => {
+          if (response) {
+            window.location.reload();
+          }
+        });
+    }
     function onUploadPhoto(event) {
       let element = document.getElementById("photo-display");
       element.src = URL.createObjectURL(event.target.files[0]);
@@ -412,7 +420,7 @@
           });
         })
         .catch((error) => {
-          alert("Olmadı!!!");
+          alert("Do Not Happen!!!");
         });
     }
 
@@ -438,7 +446,7 @@
         },
       }).then((response) => {
         if (response) {
-          alert(response.data);
+          alert("The blog has just been updated...");
           location.reload();
         }
       }).catch((error) => {
@@ -462,7 +470,7 @@
             console.log(response.data);
             debugger;
             if (response) {
-              alert(response.data);
+              alert("The blog has just been deleted...");
               window.location.href = "/admin.html";
             }
 

@@ -1,244 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Panel</title>
-    <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon" />
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Inter:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap"  rel="stylesheet"/>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel</title>
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon" />
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
 
-    <!-- Template Main CSS Files -->
-    <link rel="stylesheet" href="/assets/css/admin.css" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Inter:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet" />
 
-    <!-- Vendor CSS Files -->
-    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet"/>
-    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
-    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
-    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+  <!-- Template Main CSS Files -->
+  <link rel="stylesheet" href="/assets/css/admin.css" />
 
-    <!-- Bootstrap.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js"></script>
-  </head>
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
 
-  <body>
-    <!-- Modal-Add-Category-->
-    <div
-      class="modal fade"
-      id="modal-add-category"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">
-              Add Category
-            </h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <form class="form-group" action="admin.html" method="post">
-              <div>
-                <label for="category">Category Name: </label>
-              </div>
-              <div>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="add-category"
-                  placeholder="Enter New Category"
-                  style="margin-top: 1%"
-                />
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              class="btn btn-danger"
-              onclick="addNewCategory()"
-            >
-              Add
-            </button>
-          </div>
+  <!-- Bootstrap.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <!-- Modal-Add-Category-->
+  <div class="modal fade" id="modal-add-category" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">
+            Add Category
+          </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form class="form-group" action="admin.html" method="post">
+            <div>
+              <label for="category">Category Name: </label>
+            </div>
+            <div>
+              <input type="text" class="form-control" id="add-category" placeholder="Enter New Category"
+                style="margin-top: 1%" />
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Cancel
+          </button>
+          <button type="submit" class="btn btn-danger" onclick="addNewCategory()">
+            Add
+          </button>
         </div>
       </div>
     </div>
-    <!-- Modal-Update-Category-->
-    <div
-      class="modal fade"
-      id="modal-update-category"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">
-              Updating Category
-            </h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <form class="form-group" action="admin.html" method="post">
-              <div>
-                <label for="category">Category Name: </label>
-              </div>
-              <div>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="update-category"
-                  placeholder="Enter New Category"
-                  style="margin-top: 1%"
-                />
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Cancel
-            </button>
-            <button type="submit" class="btn btn-danger" id="confirm-button">
-              Update
-            </button>
-          </div>
+  </div>
+  <!-- Modal-Update-Category-->
+  <div class="modal fade" id="modal-update-category" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">
+            Updating Category
+          </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form class="form-group" action="admin.html" method="post">
+            <div>
+              <label for="category">Category Name: </label>
+            </div>
+            <div>
+              <input type="text" class="form-control" id="update-category" placeholder="Enter New Category"
+                style="margin-top: 1%" />
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Cancel
+          </button>
+          <button type="submit" class="btn btn-danger" id="confirm-button">
+            Update
+          </button>
         </div>
       </div>
     </div>
-    <!-- Modal-Delete-Category -->
-    <div
-      class="modal fade"
-      id="modal-delete-category"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">
-              Delete Category
-            </h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <p>Are you sure you want to delete this category?</p>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Cancel
-            </button>
-            <button
-              type="button"
-              class="btn btn-danger"
-              onclick="confirmDelete()"
-            >
-              Delete
-            </button>
-          </div>
+  </div>
+  <!-- Modal-Delete-Category -->
+  <div class="modal fade" id="modal-delete-category" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">
+            Delete Category
+          </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to delete this category?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Cancel
+          </button>
+          <button type="button" class="btn btn-danger" onclick="confirmDelete()">
+            Delete
+          </button>
         </div>
       </div>
     </div>
-    <!-- Modal-Add-Blog -->
-    <div
-      class="modal fade"
-      id="add-new-blog"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Add Blog</h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div class="form-group p-2">
-                <label for="title">Title</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="title-for-blog"
-                  placeholder="Enter title"
-                />
-              </div>
-              <div class="form-group p-2">
-                <label for="category">Category</label>
-                <select class="form-select" id="category-for-blog">
-                  <option value="">Choosing...</option>
-                </select>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              class="btn btn-success"
-              onclick="addNewBlog()"
-            >
-              Add
-            </button>
-          </div>
+  </div>
+  <!-- Modal-Add-Blog -->
+  <div class="modal fade" id="add-new-blog" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Add Blog</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group p-2">
+              <label for="title">Title</label>
+              <input type="text" class="form-control" id="title-for-blog" placeholder="Enter title" />
+            </div>
+            <div class="form-group p-2">
+              <label for="category">Category</label>
+              <select class="form-select" id="category-for-blog">
+                <option value="">Choosing...</option>
+              </select>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Cancel
+          </button>
+          <button type="submit" class="btn btn-success" onclick="addNewBlog()">
+            Add
+          </button>
         </div>
       </div>
     </div>
-
-    <!-- Modal-Delete-User -->
+  </div>
+  <!-- Modal-Delete-User -->
   <div class="modal fade" id="modal-delete-user" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -262,216 +179,196 @@
       </div>
     </div>
   </div>
-    <!-- The Header -->
-    <div class="header">
-      <ul class="horizantal">
-        <li>
-          <div class="logo"><i class="fas fa-cogs"></i> Admin Panel</div>
-        </li>
-        <li>
-          <div class="menu-toggle" id="menu-toggle" onclick="openNavBar()">
-            <i class="fas fa-bars"></i>
-          </div>
-        </li>
-        <li style="padding-top: 10px; margin-left: 850px">
-          <a href="/login.html">
-            <button type="button" class="btn btn-danger">
-              <i class="bi bi-box-arrow-right"></i> Logout
+  <!-- The Header -->
+  <div class="header">
+    <ul class="horizantal">
+      <li>
+        <div class="logo"><i class="fas fa-cogs"></i> Admin Panel</div>
+      </li>
+      <li>
+        <div class="menu-toggle" id="menu-toggle" onclick="openNavBar()">
+          <i class="fas fa-bars"></i>
+        </div>
+      </li>
+      <li style="padding-top: 10px; margin-left: 850px">
+        <a>
+          <button type="button" class="btn btn-danger" onclick="logout()">
+            <i class="bi bi-box-arrow-right"></i> Logout
+          </button>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- The sidebar -->
+  <div class="sidebar" id="sidebar" style="display: block">
+    <a href="#" onclick="openPanel('home-panel')"><i class="fa-solid fa-home"></i> Home</a>
+    <a href="#" onclick="openPanel('user-panel')"><i class="fa solid fa-user"></i> Users</a>
+    <a href="#" onclick="openPanel('blog-panel')"><i class="fa-brands fa-blogger"></i> Blogs</a>
+    <a href="#" onclick="openPanel('category-panel')"><i class="fa-solid fa-list"></i> Categories</a>
+    <a href="index.html">
+      <i class="fa-solid fa-right-to-bracket fa-beat"></i> Website
+    </a>
+  </div>
+
+  <!-- The Main -->
+  <div class="main" id="main">
+    <div id="home-panel" class="panel">
+      <div class="card" style="margin-top: 25px;">
+        <div class="card-header">
+          Informations
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">How many blogs have been published? </h5>
+          <p class="card-text"><b id="countOfBlogs"></b> blogs have been published until now.</p>
+          <a href="#" class="btn btn-primary" onclick="openPanel('blog-panel')">Blogs</a>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">How many users have been registered? </h5>
+          <p class="card-text"><b id="countOfUsers"></b> users have been registered until now.</p>
+          <a href="#" class="btn btn-primary" onclick="openPanel('user-panel')">Users</a>
+        </div>
+      </div>
+    </div>
+    <div id="user-panel" class="panel">
+      <h2 class="panel-title">User Panel</h2>
+      <br />
+      <div>
+        <ul class="horizantal justify-content-left">
+          <li>
+            <span>LastName: </span> <input type="text" id="lastNameFilter" />
+          </li>
+          <li class="mx-1">
+            <button type="submit" class="btn btn-info" onclick="ListOfUsers(1)">
+              List Of All
             </button>
-          </a>
-        </li>
-      </ul>
-    </div>
-
-    <!-- The sidebar -->
-    <div class="sidebar" id="sidebar" style="display: block">
-      <a href="#" onclick="openPanel('home-panel')"
-        ><i class="fa-solid fa-home"></i> Home</a
-      >
-      <a href="#" onclick="openPanel('user-panel')"
-        ><i class="fa solid fa-user"></i> Users</a
-      >
-      <a href="#" onclick="openPanel('blog-panel')"
-        ><i class="fa-brands fa-blogger"></i> Blogs</a
-      >
-      <a href="#" onclick="openPanel('category-panel')"
-        ><i class="fa-solid fa-list"></i> Categories</a
-      >
-      <a href="index.html">
-        <i class="fa-solid fa-right-to-bracket fa-beat"></i> Website
-      </a>
-    </div>
-
-    <!-- The Main -->
-    <div class="main" id="main">
-      <div id="home-panel" class="panel">
-        <div class="card" style="margin-top: 25px;">
-          <div class="card-header">
-            Informations
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">How many blogs have been published? </h5>
-            <p class="card-text"><b id="countOfBlogs"></b> blogs have been published until now.</p>
-            <a href="#" class="btn btn-primary" onclick="openPanel('blog-panel')">Blogs</a>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">How many users have been registered? </h5>
-            <p class="card-text"><b id="countOfUsers" ></b> users have been registered until now.</p>
-            <a href="#" class="btn btn-primary" onclick="openPanel('user-panel')" >Users</a>
-          </div>
-        </div>
+          </li>
+          <li class="mx-1">
+            <button class="btn btn-success" onclick="ListOfUsers(0)">Admins</button>
+          </li>
+        </ul>
       </div>
-      <div id="user-panel" class="panel">
-        <h2 class="panel-title">User Panel</h2>
-        <br />
-        <div>
-          <ul class="horizantal">
-            <li>
-              <span>LastName: </span> <input type="text" id="lastNameFilter" />
-            </li>
-            <li>
-              <button
-                type="submit"
-                class="btn btn-info"
-                onclick="ListOfUsers(1)"
-              >
-                List Of All
-              </button>
-            </li>
-            <li>
-              <button class="btn btn-success" onclick="ListOfUsers(0)">Admins</button>
-            </li>
-          </ul>
-        </div>
-        <div id="user-panel-table">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">First Name</th>
-                <th scope="col">Last Name</th>
-                <th scope="col">Email Adress</th>
-                <th scope="col">UserType</th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody id="userTable"></tbody>
-          </table>
-        </div>
-      </div>
-      <div id="blog-panel" class="panel">
-        <h2 class="panel-title">Blog Panel</h2>
-
-        <div>
-          <label for="category">Category: </label>
-          <select id="category-for-filter" onchange="listBlogFilter(event)">
-            <option value="all">All</option>
-          </select>
-        </div>
-        <br />
-        <div>
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Title</th>
-                <th>Category</th>
-                <th>Publish Date</th>
-                <th>Is Publised</th>
-                <th>Details</th>
-              </tr>
-            </thead>
-            <tbody id="blog-table"></tbody>
-          </table>
-        </div>
-        <div style="padding-top: 5%">
-          <a
-            href="#"
-            class="floating-btn"
-            data-bs-toggle="modal"
-            data-bs-target="#add-new-blog"
-          >
-            <i class="bi bi-plus"></i>
-          </a>
-        </div>
-      </div>
-      <div id="category-panel" class="panel">
-        <h2 class="panel-title">Category Panel</h2>
-
-        <!--List-Of-Categories-->
-        <div>
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Categories</th>
-              </tr>
-            </thead>
-            <tbody id="table-categories"></tbody>
-          </table>
-        </div>
-
-        <div>
-          <a
-            href="#"
-            class="floating-btn"
-            data-bs-toggle="modal"
-            data-bs-target="#modal-add-category"
-          >
-            <i class="bi bi-plus"></i>
-          </a>
-        </div>
+      <div id="user-panel-table">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">First Name</th>
+              <th scope="col">Last Name</th>
+              <th scope="col">Email Adress</th>
+              <th scope="col">UserType</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody id="userTable"></tbody>
+        </table>
       </div>
     </div>
+    <div id="blog-panel" class="panel">
+      <h2 class="panel-title">Blog Panel</h2>
 
-    <!-- Vendor JS Files -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-      rel="stylesheet"
-    ></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js"></script>
-    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="assets/vendor/aos/aos.js"></script>
-    <script src="assets/vendor/php-email-form/validate.js"></script>
+      <div>
+        <label for="category">Category: </label>
+        <select id="category-for-filter" onchange="listBlogFilter(event)">
+          <option value="all">All</option>
+        </select>
+      </div>
+      <br />
+      <div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Title</th>
+              <th>Category</th>
+              <th>Publish Date</th>
+              <th>Is Publised</th>
+              <th>Details</th>
+            </tr>
+          </thead>
+          <tbody id="blog-table"></tbody>
+        </table>
+      </div>
+      <div style="padding-top: 5%">
+        <a href="#" class="floating-btn" data-bs-toggle="modal" data-bs-target="#add-new-blog">
+          <i class="bi bi-plus"></i>
+        </a>
+      </div>
+    </div>
+    <div id="category-panel" class="panel">
+      <h2 class="panel-title">Category Panel</h2>
 
-    <!-- JavaScript code to toggle the sidebar -->
-    <script>
-      var categories = [];
-      window.onload = function () {
-        openPanel("home-panel");
+      <!--List-Of-Categories-->
+      <div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Categories</th>
+            </tr>
+          </thead>
+          <tbody id="table-categories"></tbody>
+        </table>
+      </div>
+
+      <div>
+        <a href="#" class="floating-btn" data-bs-toggle="modal" data-bs-target="#modal-add-category">
+          <i class="bi bi-plus"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vendor JS Files -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" rel="stylesheet"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- JavaScript code to toggle the sidebar -->
+  <script>
+    var admin = window.localStorage.getItem('userType');
+    var UId = window.localStorage.getItem('userId');
+    if (admin === 'User' || !admin) {
+      window.location.href = "/index.html";
+    }
+    var categories = [];
+    window.onload = function () {
+      openPanel("home-panel");
+    };
+    /* Authorizing */
+    var token = window.localStorage.getItem("token");
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    ListBlogs();
+    ListOfCategories();
+    ListOfUsers(1);
+    /* LIST PROCESS */
+
+    // List Of Users
+
+    function ListOfUsers(type) {
+      const filterData = {
+        filterChars: document.getElementById("lastNameFilter").value,
+        userType: type,
       };
-      ListBlogs();
-      ListOfCategories();
-      ListOfUsers(1);
-      /* LIST PROCESS */
-
-      // List Of Users
-
-      function ListOfUsers(type) {
-        const filterData = {
-          filterChars: document.getElementById("lastNameFilter").value,
-          userType: type,
-        };
-        let table = document.getElementById("userTable");
-        table.innerHTML = "";
-        axios
-          .post(`https://localhost:7202/api/Admin/list-all-users`, filterData)
-          .then((response) => {
-            let i = 0;
-            var users = [];
-            users = response.data;
-            document.getElementById('countOfUsers').innerHTML = users.length; 
-            users.forEach((user) => {
-              var tr = ``;
-              tr += ` <tr>
+      let table = document.getElementById("userTable");
+      table.innerHTML = "";
+      axios
+        .post(`https://localhost:7202/api/Admin/list-all-users`, filterData)
+        .then((response) => {
+          let i = 0;
+          var users = [];
+          users = response.data;
+          document.getElementById('countOfUsers').innerHTML = users.length;
+          users.forEach((user) => {
+            var tr = ``;
+            tr += ` <tr>
                 <th scope="row">${++i}</th>
                 <td>${user.firstName}</td>
                 <td>${user.lastName}</td>
@@ -483,79 +380,76 @@
                     </button>
                 </td>
                 <td>
-                 <button type="button" class="btn btn-danger btn-sm" onclick = "deleteUser(${
-                   user.userId
-                 })">
+                 <button type="button" class="btn btn-danger btn-sm" onclick = "deleteUser(${user.userId
+              })">
                     <i class="bi bi-trash-fill"></i>
                   </button>
                 </td>
               </tr>`;
-              table.innerHTML += tr;
-            });
+            table.innerHTML += tr;
           });
-      }
+        });
+    }
 
-      //List Of Categories
+    //List Of Categories
 
-      function ListOfCategories() {
-        const forBlog = document.getElementById("category-for-blog");
-        const table = document.getElementById("table-categories");
-        const filter = document.getElementById("category-for-filter");
-        let i = 0;
-        axios
-          .get(`https://localhost:7202/api/admin/list-category-with-Id`)
-          .then((response) => {
-            categories = response.data;
-            categories.forEach((element) => {
-              var tr = ``;
-              var option = ``;
-              option += `<option value="${element.categoryId}">${element.categoryName}</option>`;
-              tr += `<tr>`;
-              tr += `<td>${++i}.</td>`;
-              tr += ` <td>${element.categoryName}</td>`;
-              tr += `<td> <button type="button" class="btn btn-success" 
+    function ListOfCategories() {
+      const forBlog = document.getElementById("category-for-blog");
+      const table = document.getElementById("table-categories");
+      const filter = document.getElementById("category-for-filter");
+      let i = 0;
+      axios
+        .get(`https://localhost:7202/api/admin/list-category-with-Id`)
+        .then((response) => {
+          categories = response.data;
+          categories.forEach((element) => {
+            var tr = ``;
+            var option = ``;
+            option += `<option value="${element.categoryId}">${element.categoryName}</option>`;
+            tr += `<tr>`;
+            tr += `<td>${++i}.</td>`;
+            tr += ` <td>${element.categoryName}</td>`;
+            tr += `<td> <button type="button" class="btn btn-success" 
                       onclick="updateCategoryById(${element.categoryId}, '${element.categoryName}')">
                       <i class="bi bi-pencil-square"></i></button></td>`;
-              tr += `<td> <button type="button" class="btn btn-danger" 
+            tr += `<td> <button type="button" class="btn btn-danger" 
                           onclick="getCategoryId(${element.categoryId})"> 
                           <i class="bi bi-trash"></i></button></td>`;
-              tr += `</tr>`;
-              table.innerHTML += tr;
-              forBlog.innerHTML += option;
-              filter.innerHTML += option;
-            });
-          })
-          .catch((error) => {
-            console.log(error);
-            alert("Olmadı!!!");
+            tr += `</tr>`;
+            table.innerHTML += tr;
+            forBlog.innerHTML += option;
+            filter.innerHTML += option;
           });
-      }
+        })
+        .catch((error) => {
+          console.log(error);
+          alert("Do Not Happen!!!");
+        });
+    }
 
-      //List Of Blogs
+    //List Of Blogs
 
-      const table = document.getElementById("blog-table");
-      function ListBlogs() {
-        let i = 0;
-        axios
-          .get(`https://localhost:7202/api/admin/list-blog-with-Id`)
-          .then((response) => {
-            var blogs = [];
-            blogs = response.data;
-            document.getElementById('countOfBlogs').innerHTML = blogs.length; 
-            table.innerHTML = " ";
-            blogs.forEach((element) => {
-              var tr = ``;
-              tr += `<tr>`;
-              tr += `<td>${++i}.</td>`;
-              tr += `<td>${element.title}</td>`;
-              tr += `<td>${element.category}</td>`;
-              tr += `<td>${
-                element.publishDate === "1.01.0001" ? "-" : element.publishDate
+    const table = document.getElementById("blog-table");
+    function ListBlogs() {
+      let i = 0;
+      axios
+        .get(`https://localhost:7202/api/admin/list-blog-with-Id`)
+        .then((response) => {
+          var blogs = [];
+          blogs = response.data;
+          document.getElementById('countOfBlogs').innerHTML = blogs.length;
+          table.innerHTML = " ";
+          blogs.forEach((element) => {
+            var tr = ``;
+            tr += `<tr>`;
+            tr += `<td>${++i}.</td>`;
+            tr += `<td>${element.title}</td>`;
+            tr += `<td>${element.category}</td>`;
+            tr += `<td>${element.publishDate === "1.01.0001" ? "-" : element.publishDate
               }</td>`;
-              tr += `<td>${
-                element.isPublished ? "Published" : "Waiting For Publishing"
+            tr += `<td>${element.isPublished ? "Published" : "Waiting For Publishing"
               }</td>`;
-              tr += `<td>
+            tr += `<td>
                   <a
                     href="/blog-detail-for-admin.html?blogId=${element.blogId}"
                     class="btn btn-info btn-sm"
@@ -563,231 +457,235 @@
                     <i class="bi bi-gear"></i>
                   </a>
                 </td>`;
-              table.innerHTML += tr;
-              
-            });
+            table.innerHTML += tr;
 
-            
-          })
-          .catch((error) => {
-            console.log(error);
-            alert("Olmadı!!!");
           });
+
+
+        })
+        .catch((error) => {
+          console.log(error);
+          alert("Do Not Happen!!!");
+        });
+    }
+
+    //List Of Blogs By Filter
+
+    function listBlogFilter(event) {
+      let categoryId = event.target.value;
+      if (categoryId == "all") {
+        ListBlogs();
+        return;
       }
+      let i = 0;
+      axios
+        .post(
+          `https://localhost:7202/api/Admin/list-blog-by-filter/${categoryId}`
+        )
+        .then((response) => {
+          var blogs = [];
+          blogs = response.data;
+          table.innerHTML = " ";
+          blogs.forEach((element) => {
+            var tr = ``;
+            tr += `<tr>`;
+            tr += `<td>${++i}.</td>`;
+            tr += `<td>${element.title}</td>`;
+            tr += `<td>${element.category}</td>`;
+            tr += `<td>${element.publishDate === "1.01.0001" ? "-" : element.publishDate
+              }</td>`;
+            tr += `<td>${element.isPublished ? "Published" : "Waiting For Publishing"
+              }</td>`;
+            tr += `<td>
+                  <a
+                    href="/blog-detail-for-admin.html?blogId=${element.blogId}"
+                    class="btn btn-info btn-sm"
+                  >
+                    <i class="bi bi-gear"></i>
+                  </a>
+                </td>`;
+            table.innerHTML += tr;
+          });
+        });
+    }
 
-      //List Of Blogs By Filter
 
-      function listBlogFilter(event) {
-        let categoryId = event.target.value;
-        if(categoryId == "all"){
-          ListBlogs();
-          return;
-        }
-        let i = 0;
+    /* ADD PROCESS*/
+
+    // Add New Category
+    function addNewCategory() {
+      const categoryName = document.getElementById("add-category").value;
+      if (categoryName) {
         axios
           .post(
-            `https://localhost:7202/api/Admin/list-blog-by-filter/${categoryId}`
+            `https://localhost:7202/api/Admin/add-category/${categoryName}`
           )
           .then((response) => {
-            var blogs = [];
-            blogs = response.data;
-            table.innerHTML = " ";
-            blogs.forEach((element) => {
-              var tr = ``;
-              tr += `<tr>`;
-              tr += `<td>${++i}.</td>`;
-              tr += `<td>${element.title}</td>`;
-              tr += `<td>${element.category}</td>`;
-              tr += `<td>${
-                element.publishDate === "1.01.0001" ? "-" : element.publishDate
-              }</td>`;
-              tr += `<td>${
-                element.isPublished ? "Published" : "Waiting For Publishing"
-              }</td>`;
-              tr += `<td>
-                  <a
-                    href="/blog-detail-for-admin.html?blogId=${element.blogId}"
-                    class="btn btn-info btn-sm"
-                  >
-                    <i class="bi bi-gear"></i>
-                  </a>
-                </td>`;
-              table.innerHTML += tr;
-            });
-          });
-      }
-
-
-      /* ADD PROCESS*/
-
-      // Add New Category
-      function addNewCategory() {
-        const categoryName = document.getElementById("add-category").value;
-        if (categoryName) {
-          axios
-            .post(
-              `https://localhost:7202/api/Admin/add-category/${categoryName}`
-            )
-            .then((response) => {
-              alert("İşlem Başarılı...");
-              window.location.reload();
-            })
-            .catch((error) => {
-              alert("Olmadı!!!");
-            });
-        }
-      }
-
-
-      // Add New Blog
-      function addNewBlog() {
-        const newBlog = {
-          title: document.getElementById("title-for-blog").value,
-          categoryId: document.getElementById("category-for-blog").value,
-        };
-        axios
-          .post(`https://localhost:7202/api/admin/add-new-blog`, newBlog)
-          .then((response) => {
-            if (response) {
-              alert(response.data);
-              location.reload();
-            }
-          });
-      }
-
-
-      /* DELETE PROCESS */
-
-      // Delete Category By Id
-      let categoryIdFordelete;
-      function getCategoryId(id) {
-        categoryIdFordelete = id;
-      }
-      function confirmDelete() {
-        if (categoryIdFordelete) {
-          let categoryId = categoryIdFordelete;
-          axios
-            .delete(
-              `https://localhost:7202/api/admin/delete-category-by-Id/${categoryId}`
-            )
-            .then((response) => {
-              alert("İşlem Başarılı");
-              location.reload();
-            });
-        }
-      }
-
-      let userId;
-      function deleteUser(Id) {
-      userId = Id;
-      const modalDelete = document.getElementById("modal-delete-user");
-      const modalOpen = new bootstrap.Modal(modalDelete);
-      modalOpen.show();
-
-      document.getElementById('deleteUserButton').addEventListener('click', function () {
-        axios
-          .delete(`https://localhost:7202/api/Admin/delete-user-by-Id/${userId}`)
-          .then((response) => {
-            if (response) {
-              alert(response.data);
-              location.reload();
-            }
-
+            alert("A Category has just been added...");
+            window.location.reload();
           })
+          .catch((error) => {
+            alert("Do Not Happen!!!");
+          });
+      }
+    }
 
-      })
+
+    // Add New Blog
+    function addNewBlog() {
+      const newBlog = {
+        title: document.getElementById("title-for-blog").value,
+        categoryId: document.getElementById("category-for-blog").value,
+      };
+      axios
+        .post(`https://localhost:7202/api/admin/add-new-blog`, newBlog)
+        .then((response) => {
+          if (response) {
+            alert("A Blog has just been added...");
+            location.reload();
+          }
+        });
+    }
+
+
+    /* DELETE PROCESS */
+
+    // Delete Category By Id
+    let categoryIdFordelete;
+    function getCategoryId(id) {
+      categoryIdFordelete = id;
+    }
+    function confirmDelete() {
+      if (categoryIdFordelete) {
+        let categoryId = categoryIdFordelete;
+        axios
+          .delete(
+            `https://localhost:7202/api/admin/delete-category-by-Id/${categoryId}`
+          )
+          .then((response) => {
+            alert("The category has been deleted...");
+            location.reload();
+          });
+      }
+    }
+
+    let userId;
+    function deleteUser(Id) {
+      if (UId == Id) {
+        alert("You cannot delete this user!!!");
+        return;
+      } else {
+        userId = Id;
+        const modalDelete = document.getElementById("modal-delete-user");
+        const modalOpen = new bootstrap.Modal(modalDelete);
+        modalOpen.show();
+
+        document.getElementById('deleteUserButton').addEventListener('click', function () {
+          axios
+            .delete(`https://localhost:7202/api/Admin/delete-user-by-Id/${userId}`)
+            .then((response) => {
+              if (response) {
+                alert("The User has just been deleted...");
+                location.reload();
+              }
+
+            })
+
+        })
+
+      }
+
 
 
 
     }
 
-      /* UPDATE PROCESS */
+    /* UPDATE PROCESS */
 
-      // Update Category By Id
-      function updateCategoryById(categoryId, categoryName) {
-        const modalUpdate = document.getElementById("modal-update-category");
-        let CId = categoryId;
-        document.getElementById("update-category").value = categoryName;
-        const bootModal = new bootstrap.Modal(modalUpdate);
-        bootModal.show();
+    // Update Category By Id
+    function updateCategoryById(categoryId, categoryName) {
+      const modalUpdate = document.getElementById("modal-update-category");
+      let CId = categoryId;
+      document.getElementById("update-category").value = categoryName;
+      const bootModal = new bootstrap.Modal(modalUpdate);
+      bootModal.show();
 
-        document
-          .getElementById("confirm-button")
-          .addEventListener("click", function () {
-            const newData = {
-              categoryId: CId,
-              categoryName: document.getElementById("update-category").value,
-            };
+      document
+        .getElementById("confirm-button")
+        .addEventListener("click", function () {
+          const newData = {
+            categoryId: CId,
+            categoryName: document.getElementById("update-category").value,
+          };
 
-            axios
-              .put(
-                `https://localhost:7202/api/admin/update-category-by-Id`,
-                newData
-              )
-              .then((response) => {
-                if (response) alert(response.data);
-                location.reload();
-              })
-              .catch((error) => {
-                alert(error);
-              });
-          });
-      }
+          axios
+            .put(
+              `https://localhost:7202/api/admin/update-category-by-Id`,
+              newData
+            )
+            .then((response) => {
+              if (response) alert("The category has been updated...");
+              location.reload();
+            })
+            .catch((error) => {
+              alert(error);
+            });
+        });
+    }
 
-      // Change UserType By Id
-      function changeUserType(userId) {
+    // Change UserType By Id
+    function changeUserType(userId) {
 
-        console.log(userId);
-        debugger;
-        axios
-          .put(`https://localhost:7202/api/Admin/change-user-type/${userId}`)
-          .then((response) => {
-            if (response) {
-              alert(response.data);
-            }
-          });
-      }
-
-      
-
-
-      /* NON-CRUD JS TRANSACTIONS */
-      function openNavBar() {
-        const sidebar = document.getElementById("sidebar");
-        const main = document.getElementById("main");
-        const openedElement = document.getElementsByClassName("open");
-
-        if (sidebar.style.width === "250px") {
-          // Close Side Bar
-          sidebar.style.width = "0px";
-          main.style.marginLeft = "0px";
-          openedElement[0].style.left = "10px";
-        } else {
-          // Open Side Bar
-          sidebar.style.width = "250px";
-          main.style.marginLeft = "250px";
-          openedElement[0].style.left = "260px";
-
-        }
-      }
-
-      function openPanel(panelId) {
-        const panels = document.getElementsByClassName("panel");
-        for (let i = 0; i < panels.length; i++) {
-          const panel = panels[i];
-          if (panel.id === panelId) {
-            panel.classList.add("open");
-          } else {
-            panel.classList.remove("open");
+      console.log(userId);
+      debugger;
+      axios
+        .put(`https://localhost:7202/api/Admin/change-user-type/${userId}`)
+        .then((response) => {
+          if (response) {
+            alert("The transaction is successful...");
           }
+        });
+    }
+
+
+
+
+    /* NON-CRUD JS TRANSACTIONS */
+    function openNavBar() {
+      const sidebar = document.getElementById("sidebar");
+      const main = document.getElementById("main");
+      const openedElement = document.getElementsByClassName("open");
+
+      if (sidebar.style.width === "250px") {
+        // Close Side Bar
+        sidebar.style.width = "0px";
+        main.style.marginLeft = "0px";
+        openedElement[0].style.left = "10px";
+      } else {
+        // Open Side Bar
+        sidebar.style.width = "250px";
+        main.style.marginLeft = "250px";
+        openedElement[0].style.left = "260px";
+
+      }
+    }
+
+    function openPanel(panelId) {
+      const panels = document.getElementsByClassName("panel");
+      for (let i = 0; i < panels.length; i++) {
+        const panel = panels[i];
+        if (panel.id === panelId) {
+          panel.classList.add("open");
+        } else {
+          panel.classList.remove("open");
         }
       }
+    }
+    function logout() {
+      window.localStorage.clear();
+      window.location.href = "/login.html";
+    }
+  </script>
+</body>
 
-      function logout() {
-
-        window.location.href="/login.html";
-        
-      }
-    </script>
-  </body>
 </html>
