@@ -65,14 +65,14 @@
                 <input type="text" class="form-control" id="lastName" />
               </div>
             </div>
-            <div class="mb-3">
+            <div class=" col mb-3">
               <label for="email" class="form-label">Email address</label>
               <input
                 type="email"
                 class="form-control"
                 id="email"
                 aria-describedby="emailHelp"
-                onkeyup="validateEmail()"
+                onchange="validateEmail()"
               />
               <p id="validation-message"></p>
             </div>
@@ -118,7 +118,7 @@
         alertDiv.innerHTML = "Fields can not be left blank!!!";
         alertDiv.classList.add("d-none");
         event.preventDefault();
-        const alertDiv = document.getElementById("required-alert");
+        // const alertDiv = document.getElementById("required-alert");
         const firstName = document.getElementById("firstName").value;
         const lastName = document.getElementById("lastName").value;
         const email = document.getElementById("email").value;

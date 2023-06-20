@@ -101,15 +101,9 @@
     <!-- ======= Post Grid Section ======= -->
     <section id="posts" class="posts">
       <div class="container" data-aos="fade-up">
-        <div class="row g-5">
-          <div class="col-9 row" id="listAllBlogs">
+          <div class="row" id="listAllBlogs">
 
           </div>
-          <!-- <div class="col-3">
-            başka bişey
-          </div> -->
-
-        </div>
 
       </div>
       </div>
@@ -237,7 +231,7 @@
         if (response) {
           response.data.forEach((blog) => {
             var div = ``;
-            div += `<div class="col-12 col-sm-12 col-md-6 col-xl-4 post-entry-1" >
+            div += `<div class="col post-entry-1" >
                         <div>
                           <a href="http://127.0.0.1:5500/single-post.html?blogid=${blog.blogId}" class="blogLink">
                             <img width="250" height="200" src="${blog.photo != null ? "data:image/jpeg;base64," + blog.photo : "assets\\img\\noimage.png"}" class="shadow-sm border rounded" />

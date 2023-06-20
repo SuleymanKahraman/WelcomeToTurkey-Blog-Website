@@ -20,8 +20,6 @@ namespace WelcomeToTurkeyAPI.Controllers
             this.dbContext = dbContext;
         }
 
-
-
         /* LIST TRANSACTIONS */
 
         // List Of Users

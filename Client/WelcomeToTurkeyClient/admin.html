@@ -115,7 +115,7 @@
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
             Cancel
           </button>
-          <button type="button" class="btn btn-danger" onclick="confirmDelete()">
+          <button type="button" class="btn btn-danger" id="deleteCategoryButton">
             Delete
           </button>
         </div>
@@ -413,7 +413,7 @@
                       onclick="updateCategoryById(${element.categoryId}, '${element.categoryName}')">
                       <i class="bi bi-pencil-square"></i></button></td>`;
             tr += `<td> <button type="button" class="btn btn-danger" 
-                          onclick="getCategoryId(${element.categoryId})"> 
+                          onclick="deleteCategoryById(${element.categoryId})"> 
                           <i class="bi bi-trash"></i></button></td>`;
             tr += `</tr>`;
             table.innerHTML += tr;
@@ -551,13 +551,13 @@
     /* DELETE PROCESS */
 
     // Delete Category By Id
-    let categoryIdFordelete;
-    function getCategoryId(id) {
-      categoryIdFordelete = id;
-    }
-    function confirmDelete() {
-      if (categoryIdFordelete) {
-        let categoryId = categoryIdFordelete;
+    function deleteCategoryById(id) {
+      let categoryId= id;
+      const modalDelete = document.getElementById("modal-delete-category");
+      const modalOpen = new bootstrap.Modal(modalDelete);
+      modalOpen.show();
+
+      document.getElementById('deleteCategoryButton').addEventListener('click', function(){
         axios
           .delete(
             `https://localhost:7202/api/admin/delete-category-by-Id/${categoryId}`
@@ -566,7 +566,7 @@
             alert("The category has been deleted...");
             location.reload();
           });
-      }
+      });
     }
 
     let userId;
